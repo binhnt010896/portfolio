@@ -30,7 +30,7 @@ class ProjectPreview extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(16),
-                  child: Image.asset(logoPath, height: 96),
+                  child: Image.asset(logoPath, height: 72),
                 ),
                 Text(title, style: theme.textTheme.headlineMedium?.copyWith(color: theme.colorScheme.onPrimary)),
                 SizedBox(height: 16),

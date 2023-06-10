@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/screens/home/partials/contact_fields.dart';
 import 'package:portfolio/screens/home/partials/section_wrapper.dart';
+import 'package:web_browser_detect/web_browser_detect.dart';
 
 class ContactSection extends StatefulWidget {
   const ContactSection({Key? key}) : super(key: key);
@@ -58,7 +61,10 @@ class _ContactSectionState extends State<ContactSection> {
         width: size.width,
         decoration: BoxDecoration(
           color: Colors.black,
-          image: DecorationImage(image: AssetImage('assets/images/contact_bg.jpeg'), fit: BoxFit.cover, opacity: 0.2)
+          image: DecorationImage(
+            colorFilter: Browser().browser == 'Safari' ? ColorFilter.mode(Colors.black.withOpacity(0.8), BlendMode.dstATop) : null,
+            image: AssetImage('assets/images/contact_bg.jpeg'), fit: BoxFit.cover, opacity: 0.2
+          )
         ),
         padding: EdgeInsets.symmetric(horizontal: 48),
         child: Row(

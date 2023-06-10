@@ -5,7 +5,6 @@ import 'package:portfolio/screens/home/partials/section_wrapper.dart';
 import 'package:provider/provider.dart';
 
 import 'package:stacked_card_carousel/stacked_card_carousel.dart';
-import 'package:visibility_detector/visibility_detector.dart';
 
 class SelectedProjectsSection extends StatefulWidget {
   const SelectedProjectsSection({Key? key}) : super(key: key);

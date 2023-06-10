@@ -13,7 +13,7 @@ class _RootState extends State<Root> {
 
   @override
   void initState() {
-    final supabase = Supabase.instance.client;
+    // final supabase = Supabase.instance.client;
     super.initState();
   }
 

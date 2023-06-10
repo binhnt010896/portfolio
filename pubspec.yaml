@@ -44,6 +44,7 @@ dependencies:
   stacked_card_carousel: ^0.0.4
   supabase_flutter: ^1.6.2
   visibility_detector: ^0.4.0+2
+  web_browser_detect: ^2.0.3
   zwidget: ^0.0.2
 
 dev_dependencies:

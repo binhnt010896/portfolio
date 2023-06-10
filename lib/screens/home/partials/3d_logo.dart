@@ -19,7 +19,7 @@ class _RotatingModelState extends State<RotatingModel> {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16),
           child: ModelViewer(
-            src: 'assets/models/logo_3d.glb',
+            src: 'https://firebasestorage.googleapis.com/v0/b/portfolio-e6526.appspot.com/o/logo_3d.glb?alt=media&token=fc065ba4-a017-4846-9e02-d22e6d35c4be',
             animationName: 'Running',
             ar: true,
             autoRotate: true,
@@ -29,8 +29,8 @@ class _RotatingModelState extends State<RotatingModel> {
             disableTap: true,
             loading: Loading.lazy,
             exposure: 0.75,
-            skyboxImage: 'assets/models/environment.hdr',
-            environmentImage: 'assets/models/skybox.jpg',
+            skyboxImage: 'https://firebasestorage.googleapis.com/v0/b/portfolio-e6526.appspot.com/o/environment.hdr?alt=media&token=9cffa48f-00e0-4f98-a52d-3b1bb404a7b1',
+            environmentImage: 'https://firebasestorage.googleapis.com/v0/b/portfolio-e6526.appspot.com/o/skybox.jpg?alt=media&token=3cbc3dc2-fe90-4ca0-9dbb-812d027fda6c',
           ),
         ),
       ),

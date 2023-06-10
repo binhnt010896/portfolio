@@ -27,7 +27,7 @@ class _MainVisualSectionState extends State<MainVisualSection> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hi, I\'m Bình, but you can call me George. I\'m a Flutter Developer based in 🇻🇳.',
+                    'Hi, I\'m Bình, but you can call me George. I\'m a Flutter Developer based in 🇻🇳',
                     style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                       color: Theme.of(context).colorScheme.onPrimary,
                       fontSize: 36

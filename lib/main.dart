@@ -10,11 +10,11 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'helpers/scroll_overseer.dart';
 
 Future<void> main() async {
-  await dotenv.load(fileName: '.env');
-  await Supabase.initialize(
-    url: dotenv.env[SupabaseEnv.supabaseUrl] ?? '',
-    anonKey: dotenv.env[SupabaseEnv.supabaseAnonKey] ?? '',
-  );
+  // await dotenv.load(fileName: '.env');
+  // await Supabase.initialize(
+  //   url: dotenv.env[SupabaseEnv.supabaseUrl] ?? '',
+  //   anonKey: dotenv.env[SupabaseEnv.supabaseAnonKey] ?? '',
+  // );
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => ScrollOverseer()),
