@@ -28,29 +28,15 @@ class _ContactTextFieldState extends State<ContactTextField> {
           GestureDetector(
             onTap: widget.onPress,
             child: TextFormField(
-              cursorColor: theme.colorScheme.onPrimary,
+              cursorColor: theme.colorScheme.onBackground,
               controller: widget.controller,
-              style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onPrimary, fontSize: 16),
+              style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onBackground, fontSize: 16),
               enabled: widget.enabled,
               decoration: InputDecoration(
                 hintText: widget.helper,
-                hintStyle: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onPrimary.withOpacity(0.7)),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide(),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide(color: theme.colorScheme.onPrimary, width: 2),
-                ),
-                disabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide(color: theme.colorScheme.onPrimary, width: 2),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide(color: theme.colorScheme.onPrimary, width: 2),
-                ),
+                hintStyle: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onBackground.withOpacity(0.7)),
+                filled: true,
+                fillColor: theme.colorScheme.onPrimary,
               ),
               maxLines: widget.maxLine,
             ),

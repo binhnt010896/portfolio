@@ -43,13 +43,13 @@ class _NavigationButtonState extends State<NavigationButton> {
               Text(widget.title, style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
-                color: (widget.index == widget.currentIndex) ? Theme.of(context).colorScheme.secondary : Colors.white,
+                color: (widget.index == widget.currentIndex) ? Theme.of(context).colorScheme.primary : Colors.white,
               )),
               AnimatedContainer(
                 duration: Duration(milliseconds: 200),
                 height: 2,
                 width: (widget.index == widget.currentIndex) ? 24 : 0,
-                color: (widget.index == widget.currentIndex) ? Theme.of(context).colorScheme.secondary : Colors.white,
+                color: (widget.index == widget.currentIndex) ? Theme.of(context).colorScheme.primary : Colors.white,
                 margin: EdgeInsets.only(top: 4),
               )
             ],

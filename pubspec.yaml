@@ -34,20 +34,17 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   country_picker: ^2.0.20
   cupertino_icons: ^1.0.2
+  flutter_animate: ^4.1.1+1
   flutter_dotenv: ^5.0.2
+  focusable_control_builder: ^1.0.2+1
   get: ^4.6.5
   go_router: ^6.5.5
-  model_viewer_plus: ^1.5.0
-  provider: ^6.0.5
   responsive_framework: ^0.2.0
-  snapping_page_scroll: ^3.0.0
-  stacked_card_carousel: ^0.0.4
   supabase_flutter: ^1.6.2
-  visibility_detector: ^0.4.0+2
-  web_browser_detect: ^2.0.3
   zwidget: ^0.0.2
 
 dev_dependencies:
+  statsfl: ^2.3.0
   flutter_test:
     sdk: flutter
 
@@ -73,7 +70,6 @@ flutter:
   assets:
     - .env
     - assets/images/
-    - assets/models/
     - assets/fonts/Lato/
 
   # An image asset can refer to one or more resolution-specific "variants", see
