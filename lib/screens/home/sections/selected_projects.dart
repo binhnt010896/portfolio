@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/data/images.dart';
 import 'package:portfolio/screens/home/partials/project_preview.dart';
 
 class SelectedProjectsSection extends StatefulWidget {
@@ -34,8 +35,9 @@ class _SelectedProjectsSectionState extends State<SelectedProjectsSection> {
                   title: 'Ralali Connect',
                   description: 'Ralali Connect mobile application allows merchants to setup storefront and gain access to the business community.',
                   companyName: 'Ralali',
+                  companyLink: 'https://www.ralali.com/',
                   detailPath: 'projects/ralali-connect',
-                  illustrationPath: 'assets/images/ralaliconnect.png',
+                  illustrationPath: AssetImages.ralaliConnect,
                   playStoreUrl: 'https://play.google.com/store/apps/details?id=com.ralali.konekto',
                   appStoreUrl: 'https://apps.apple.com/id/app/ralali-connect/id1590298867',
                   stackSkills: ['Dart', 'Flutter', 'JavaScript', 'VueJS']
@@ -45,8 +47,9 @@ class _SelectedProjectsSectionState extends State<SelectedProjectsSection> {
                   title: 'Ralali Agent',
                   description: 'Ralali Agent is a platform which helps user earn commission in their spare time via surveys, promotions, and product sales.',
                   companyName: 'Ralali',
+                  companyLink: 'https://www.ralali.com/',
                   detailPath: 'projects/ralali-agent',
-                  illustrationPath: 'assets/images/ralaliagent.png',
+                  illustrationPath: AssetImages.ralaliAgent,
                   playStoreUrl: 'https://play.google.com/store/apps/details?id=com.ralali.bigagent.android',
                   appStoreUrl: 'https://apps.apple.com/tc/app/ralali-agent-iniwaktunyagerak/id1623070818',
                   isImageFirst: true,
@@ -57,8 +60,9 @@ class _SelectedProjectsSectionState extends State<SelectedProjectsSection> {
                   title: 'CJ LIFE',
                   description: 'CJ LIFE assists user in collectively managing various insurances they have subscribed to, as well as contract details, insurance premiums and contract period.',
                   companyName: 'CJトラスト株式会社',
+                  companyLink: 'https://cj-trust.co.jp/',
                   detailPath: 'projects/cj-life',
-                  illustrationPath: 'assets/images/cjtrust.jpeg',
+                  illustrationPath: AssetImages.cjTrust,
                   playStoreUrl: 'https://play.google.com/store/apps/details?id=com.cjtrust.cjlife',
                   appStoreUrl: 'https://apps.apple.com/jp/app/cj-life/id1558960279',
                   stackSkills: ['Dart', 'Flutter'],

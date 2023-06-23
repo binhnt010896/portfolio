@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:portfolio/data/images.dart';
+import 'dart:js' as js;
 
 class BottomSection extends StatelessWidget {
   const BottomSection({Key? key}) : super(key: key);
@@ -9,7 +12,7 @@ class BottomSection extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          Image.asset('assets/images/logo_no_text_white.png', height: 96),
+          SvgPicture.asset(AssetImages.logoWhite, height: 96),
           SizedBox(height: 16),
           Text(
             'Crafting Cross-Platform Excellence\nwith Dart and Flutter!',
@@ -20,9 +23,15 @@ class BottomSection extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              FlutterLogo(size: 24),
-              FlutterLogo(size: 24),
-              FlutterLogo(size: 24),
+              GestureDetector(
+                onTap: () => js.context.callMethod('open', ['https://github.com/binhnt010896/']),
+                child: SvgPicture.asset(AssetImages.icGithub, height: 28),
+              ),
+              SizedBox(width: 24),
+              GestureDetector(
+                onTap: () => js.context.callMethod('open', ['https://www.linkedin.com/in/binhnt010896/']),
+                child: SvgPicture.asset(AssetImages.icLinkedIn, height: 28),
+              )
             ],
           )
         ],

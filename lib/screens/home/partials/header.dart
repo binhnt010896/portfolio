@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:portfolio/constants/metrics.dart';
-import 'package:portfolio/screens/home/partials/contact_button.dart';
+import 'package:portfolio/data/images.dart';
 import 'package:portfolio/screens/home/partials/main_navigation.dart';
 
 class Header extends StatefulWidget {
 
-  final ScrollController scrollController;
-  const Header({Key? key, required this.scrollController}) : super(key: key);
+  const Header({Key? key}) : super(key: key);
 
   @override
   State<Header> createState() => _HeaderState();
@@ -19,16 +19,13 @@ class _HeaderState extends State<Header> {
     Size size = MediaQuery.of(context).size;
     bool isSP = size.width <= MOBILE_MAX_WIDTH;
     return AppBar(
-      backgroundColor: isSP
-        ? Colors.transparent
-        : theme.colorScheme.background,
+      backgroundColor: Colors.transparent,
       elevation: 0,
       toolbarHeight: 80,
       flexibleSpace: Container(
-        decoration:
-        BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/main_visual_bg.png'),
+            image: AssetImage(AssetImages.mainVisualBg),
             alignment: Alignment.topCenter,
             fit: BoxFit.cover,
           ),
@@ -39,11 +36,7 @@ class _HeaderState extends State<Header> {
         child: MouseRegion(
           cursor: SystemMouseCursors.click,
           child: GestureDetector(
-            child: Image.asset(
-              'assets/images/logo_no_text.png',
-              fit: BoxFit.contain,
-              height: 50,
-            ),
+            child: SvgPicture.asset(AssetImages.logoPrimary, height: 50, fit: BoxFit.contain),
           ),
         ),
       ),
@@ -51,9 +44,7 @@ class _HeaderState extends State<Header> {
       actions: isSP ? [] : [
         Padding(
           padding: EdgeInsets.only(top: 28, right: 36),
-          child: MainNavigation(
-            scrollController: widget.scrollController,
-          ),
+          child: MainNavigation(),
         )
       ],
     );

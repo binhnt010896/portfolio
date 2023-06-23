@@ -3,6 +3,7 @@ import 'dart:js' as js;
 
 import 'package:go_router/go_router.dart';
 import 'package:portfolio/constants/metrics.dart';
+import 'package:portfolio/data/images.dart';
 
 class ProjectPreview extends StatelessWidget {
 
@@ -10,6 +11,7 @@ class ProjectPreview extends StatelessWidget {
   final String description;
   final String illustrationPath;
   final String companyName;
+  final String companyLink;
   final String detailPath;
   final String appStoreUrl;
   final String playStoreUrl;
@@ -22,6 +24,7 @@ class ProjectPreview extends StatelessWidget {
     required this.description,
     required this.illustrationPath,
     required this.companyName,
+    required this.companyLink,
     required this.detailPath,
     required this.appStoreUrl,
     required this.playStoreUrl,
@@ -63,8 +66,10 @@ class ProjectPreview extends StatelessWidget {
                   Text('by $companyName', style: theme.textTheme.labelMedium),
                   SizedBox(width: 8),
                   GestureDetector(
-                    onTap: () {},
-                    child: Image.asset('assets/images/ic_open_in_new_tab.png'),
+                    onTap: () {
+                      js.context.callMethod('open', [companyLink]);
+                    },
+                    child: Image.asset(AssetImages.icOpenInNewTab),
                   )
                 ],
               ),
@@ -74,14 +79,14 @@ class ProjectPreview extends StatelessWidget {
                 child: Row(
                   children: [
                     GestureDetector(
-                      child: Image.asset('assets/images/ic_dl_appstore.png', height: 40),
+                      child: Image.asset(AssetImages.icDlAppStore, height: 40),
                       onTap: () {
                         js.context.callMethod('open', [appStoreUrl]);
                       },
                     ),
                     SizedBox(width: 16),
                     GestureDetector(
-                      child: Image.asset('assets/images/ic_dl_playstore.png', height: 40),
+                      child: Image.asset(AssetImages.icDlPlayStore, height: 40),
                       onTap: () {
                         js.context.callMethod('open', [playStoreUrl]);
                       },
@@ -153,7 +158,7 @@ class ProjectPreview extends StatelessWidget {
     ];
     return Container(
       padding: EdgeInsets.all(16),
-      height: isSP ? 480 : null,
+      height: isSP ? 600 : null,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         border: Border.all(

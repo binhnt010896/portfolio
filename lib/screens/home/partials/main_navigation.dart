@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
+import 'package:portfolio/controllers/home_controller.dart';
 import 'package:portfolio/screens/home/partials/navigation_button.dart';
 
 class MainNavigation extends StatefulWidget {
 
-  final ScrollController scrollController;
-
-  const MainNavigation({Key? key, required this.scrollController}) : super(key: key);
+  const MainNavigation({Key? key}) : super(key: key);
 
   @override
   State<MainNavigation> createState() => _MainNavigationState();
@@ -15,6 +15,7 @@ class MainNavigation extends StatefulWidget {
 class _MainNavigationState extends State<MainNavigation> {
 
   int hoverIndex = -1;
+  final HomeController _homeController = Get.put(HomeController());
 
   @override
   void initState() {
@@ -31,21 +32,21 @@ class _MainNavigationState extends State<MainNavigation> {
         NavigationButton(
           title: 'Home',
           onHover: (index) => setState(() => hoverIndex = index),
-          onPress: () => widget.scrollController.animateTo(0, duration: 500.ms, curve: Curves.easeInBack),
+          onPress: () => _homeController.scrollToOffset(0),
           index: 0,
           currentIndex: hoverIndex,
         ),
         NavigationButton(
           title: 'Works',
           onHover: (index) => setState(() => hoverIndex = index),
-          onPress: () => widget.scrollController.animateTo(size.height*1.4, duration: 500.ms, curve: Curves.easeInBack),
+          onPress: () => _homeController.scrollToOffset(1200),
           index: 1,
           currentIndex: hoverIndex,
         ),
         NavigationButton(
           title: 'Contact me',
           onHover: (index) => setState(() => hoverIndex = index),
-          onPress: () => widget.scrollController.animateTo(size.height*3.8, duration: 500.ms, curve: Curves.easeInBack),
+          onPress: () => _homeController.scrollToOffset(3000),
           index: 2,
           currentIndex: hoverIndex,
         ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:portfolio/constants/metrics.dart';
+import 'package:portfolio/controllers/home_controller.dart';
 import 'package:portfolio/screens/home/partials/header.dart';
 import 'package:portfolio/screens/home/sections/cta.dart';
 import 'package:portfolio/screens/home/sections/main_visual.dart';
@@ -14,18 +16,17 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  ScrollController scrollController = ScrollController();
-  bool shouldShowScrollToTop = false;
+  final HomeController _homeController = Get.put(HomeController());
 
   @override
   void initState() {
     super.initState();
-    scrollController.addListener(() {
-      if (scrollController.offset > 100 && !shouldShowScrollToTop) {
-        setState(() => shouldShowScrollToTop = true);
+    _homeController.getScrollController().addListener(() {
+      if (_homeController.getScrollController().offset > 100 && !_homeController.getShouldScrollToTop()) {
+        _homeController.setShouldScrollToTop(true);
       }
-      if (scrollController.offset <= 100 && shouldShowScrollToTop) {
-        setState(() => shouldShowScrollToTop = false);
+      if (_homeController.getScrollController().offset <= 100 && _homeController.getShouldScrollToTop()) {
+        _homeController.setShouldScrollToTop(false);
       }
     });
   }
@@ -33,32 +34,32 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    bool isSP = size.width <= MOBILE_MAX_WIDTH;
-    return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
-      appBar: PreferredSize(
-        preferredSize: Size(size.width, 90),
-        child: Header(
-          scrollController: scrollController,
+    return Obx(() => Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.background,
+        appBar: PreferredSize(
+          preferredSize: Size(size.width, 90),
+          child: Header(),
         ),
-      ),
-      floatingActionButton: shouldShowScrollToTop ? FloatingActionButton(
-        child: Icon(Icons.arrow_upward_rounded),
-        onPressed: () {
-          scrollController.animateTo(0, duration: Duration(milliseconds: 500), curve: Curves.easeInBack);
-        },
-      ) : null,
-      extendBodyBehindAppBar: isSP,
-      body: SingleChildScrollView(
-        controller: scrollController,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            MainVisualSection(),
-            SelectedProjectsSection(),
-            CTASection(),
-          ],
+        floatingActionButton: _homeController.getShouldScrollToTop() ? FloatingActionButton(
+          elevation: 0,
+          hoverElevation: 0,
+          child: Icon(Icons.arrow_upward_rounded),
+          onPressed: () {
+            _homeController.scrollToOffset(0);
+          },
+        ) : null,
+        extendBodyBehindAppBar: true,
+        body: SingleChildScrollView(
+          controller: _homeController.getScrollController(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              MainVisualSection(),
+              SelectedProjectsSection(),
+              CTASection(),
+            ],
+          ),
         ),
       ),
     );

@@ -37,7 +37,15 @@ class _ContactTextFieldState extends State<ContactTextField> {
                 hintStyle: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onBackground.withOpacity(0.7)),
                 filled: true,
                 fillColor: theme.colorScheme.onPrimary,
+                errorStyle: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.error)
               ),
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (value) {
+                if ((value ?? '').isEmpty) {
+                  return 'Field must not be left empty';
+                }
+                return null;
+              },
               maxLines: widget.maxLine,
             ),
           ),

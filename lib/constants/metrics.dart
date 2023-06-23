@@ -1,1 +1,1 @@
-const MOBILE_MAX_WIDTH = 800;
+const double MOBILE_MAX_WIDTH = 426.0;

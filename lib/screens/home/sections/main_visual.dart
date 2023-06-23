@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:portfolio/constants/metrics.dart';
+import 'package:portfolio/data/images.dart';
 import 'package:portfolio/screens/home/sections/skill_stack.dart';
 import 'dart:js' as js;
 
@@ -50,76 +51,83 @@ class _MainVisualSectionState extends State<MainVisualSection> {
     Size size = MediaQuery.of(context).size;
     ThemeData theme = Theme.of(context);
     bool isSP = size.width <= MOBILE_MAX_WIDTH;
+    double mainVisualHeight = 1000;
     return Stack(
       alignment: Alignment.center,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       children: [
+        /// React and Flutter Logo
         Container(
-          height: size.height,
+          height: 1000,
+          padding: EdgeInsets.only(top: isSP ? 0 : 120),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                child: _renderBackgroundImage('assets/images/react_logo_white.png', LogoName.REACT),
+                child: _renderBackgroundImage(AssetImages.reactLogoWhite, LogoName.REACT),
               ),
               Expanded(
-                child: _renderBackgroundImage('assets/images/flutter_logo_white.png', LogoName.FLUTTER),
+                child: _renderBackgroundImage(AssetImages.flutterLogoWhite, LogoName.FLUTTER),
               ),
             ],
           ),
         ),
+        /// Image Background
         Column(
           children: [
             Container(
-              height: size.height*(isSP ? 1.4 : 1),
-              padding: EdgeInsets.symmetric(horizontal: 48),
+              height: mainVisualHeight,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/main_visual_bg.png'),
+                  image: AssetImage(AssetImages.mainVisualBg),
                   fit: BoxFit.cover
                 )
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Mobile Application Developer (Dart - Flutter)', style: theme.textTheme.headlineLarge, textAlign: TextAlign.center),
-                  SizedBox(height: 16),
-                  isSP ? Container() : Text('Unlocking Possibilities Across iOS and Android Platforms\nDelivering Exceptional Mobile Experiences with Dart and Flutter.', textAlign: TextAlign.center),
-                  Container(
-                    padding: EdgeInsets.symmetric(vertical: 24),
-                    height: size.height*0.3,
-                    width: size.height*0.3,
-                    child: Image.asset(
-                      'assets/images/avatar.png',
-                    ),
-                  ),
-                  Text('Hi, I\'m Binh. Nice to meet you', style: theme.textTheme.headlineLarge),
-                  SizedBox(height: 16),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: size.width*0.18),
-                    child: Text(
-                      '4+ years of experience as Mobile Application Developer with Computer Science B/S. Hands-on leadership experience, proficient in both extensive cross-functional collaboration and working independently.\nResearch-driven approach to problem-solving with intuitive knowledge to acquire new technologies & industry trends for professional advancement. ',
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  SizedBox(height: 36),
-                  ActionButton(
-                    text: 'Download Resume',
-                    icon: Icon(Icons.download_rounded, size: 16,),
-                    onPressed: () {
-                      js.context.callMethod('open', ['https://drive.google.com/file/d/1bTONVku2cbuvuodYJYuhWGAnA6MvNoWe/view']);
-                    }
-                  )
-                ],
               ),
             ),
             Container(height: isSP ? 900 : 300)
           ],
         ),
+        /// Content
         Positioned(
-          top: size.height-(isSP ? -180 : 36),
-          child: SkillStackSection(),
+          top: 120,
+          child: SizedBox(
+            width: isSP ? size.width - 16 : size.width,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Mobile Developer\n(Dart - Flutter)', style: theme.textTheme.headlineLarge, textAlign: TextAlign.center),
+                SizedBox(height: 16),
+                isSP ? Container() : Text('Unlocking Possibilities Across iOS and Android Platforms\nDelivering Exceptional Mobile Experiences with Dart and Flutter.', textAlign: TextAlign.center),
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 24),
+                  height: 200,
+                  width: 200,
+                  child: Image.asset(AssetImages.avatar),
+                ),
+                Text('Hi, I\'m Binh. Nice to meet you', style: theme.textTheme.headlineLarge, textAlign: TextAlign.center),
+                SizedBox(height: 16),
+                SizedBox(
+                  width: isSP ? size.width-32 : size.width*.36,
+                  child: Text(
+                    '4+ years of experience as Mobile Application Developer with Computer Science B/S. Hands-on leadership experience, proficient in both extensive cross-functional collaboration and working independently.\n\nResearch-driven approach to problem-solving with intuitive knowledge to acquire new technologies & industry trends for professional advancement. ',
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                SizedBox(height: 36),
+                ActionButton(
+                    text: 'Download Resume',
+                    icon: Icon(Icons.download_rounded, size: 16,),
+                    onPressed: () {
+                      js.context.callMethod('open', ['https://drive.google.com/file/d/1bTONVku2cbuvuodYJYuhWGAnA6MvNoWe/view']);
+                    }
+                ),
+                SizedBox(height: 48),
+                SkillStackSection()
+              ],
+            ),
+          )
         ),
+        /// Hover detector
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

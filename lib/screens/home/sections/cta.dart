@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/constants/metrics.dart';
+import 'package:portfolio/data/images.dart';
 import 'package:portfolio/screens/home/sections/bottom_section.dart';
 import 'package:portfolio/screens/home/sections/contact_modal.dart';
 import 'package:portfolio/widgets/action_button.dart';
@@ -89,7 +90,10 @@ class CTASection extends StatelessWidget {
             showModalBottomSheet<void>(
               context: context,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(16),
+                  topRight: Radius.circular(16),
+                ),
               ),
               builder: (context) => ContactModal(),
             );
@@ -113,7 +117,7 @@ class CTASection extends StatelessWidget {
               height: isSP ? size.height/3 : size.height/2.5,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/main_visual_bg.png'),
+                  image: AssetImage(AssetImages.mainVisualBg),
                   fit: BoxFit.cover,
                   alignment: Alignment.bottomCenter
                 ),
@@ -128,13 +132,13 @@ class CTASection extends StatelessWidget {
         Positioned(
           top: (isSP ? size.height/3 : size.height/2.5)-60,
           width: size.width*.8,
-          child: renderCTA(context),
-        ),
-        Positioned(
-          bottom: 60,
-          height: 300,
-          width: size.width,
-          child: BottomSection(),
+          child: Column(
+            children: [
+              renderCTA(context),
+              SizedBox(height: 96,),
+              BottomSection()
+            ],
+          ),
         ),
       ],
     );
