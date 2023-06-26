@@ -43,6 +43,7 @@ dependencies:
   responsive_framework: ^0.2.0
   supabase_flutter: ^1.6.2
   web_browser_detect: ^2.0.3
+  firebase_analytics_web: ^0.5.4+3
 
 dev_dependencies:
   statsfl: ^2.3.0

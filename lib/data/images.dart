@@ -24,4 +24,5 @@ class AssetImages {
   static const String logoWhite = '$_images/logo_white.svg';
   static const String icGithub = '$_images/ic_github.svg';
   static const String icLinkedIn = '$_images/ic_linkedin.svg';
+  static const String badge = '$_images/badge.svg';
 }

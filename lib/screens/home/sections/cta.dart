@@ -14,13 +14,10 @@ class CTASection extends StatelessWidget {
     bool isSP = size.width <= MOBILE_MAX_WIDTH;
     return Container(
       decoration: BoxDecoration(
-        color: theme.colorScheme.primary,
-        borderRadius: BorderRadius.circular(8)
-      ),
+          color: theme.colorScheme.primary,
+          borderRadius: BorderRadius.circular(8)),
       padding: isSP ? EdgeInsets.all(24) : EdgeInsets.all(60),
-      child: isSP
-        ? _renderSPCTA(context)
-        : _renderPCCTA(context),
+      child: isSP ? _renderSPCTA(context) : _renderPCCTA(context),
     );
   }
 
@@ -33,7 +30,8 @@ class CTASection extends StatelessWidget {
           flex: 1,
           child: Text(
             'Start a Project',
-            style: theme.textTheme.displayLarge?.copyWith(color: Color(0xFF30374F)),
+            style: theme.textTheme.displayLarge
+                ?.copyWith(color: Color(0xFF30374F)),
           ),
         ),
         Flexible(
@@ -41,7 +39,8 @@ class CTASection extends StatelessWidget {
           child: Center(
             child: Text(
               'Interested in working together? We should queue up a time to chat. I’ll buy the coffee.',
-              style: theme.textTheme.bodyMedium?.copyWith(color: Color(0xFF30374F)),
+              style: theme.textTheme.bodyMedium
+                  ?.copyWith(color: Color(0xFF30374F)),
               textAlign: TextAlign.center,
             ),
           ),
@@ -50,7 +49,10 @@ class CTASection extends StatelessWidget {
           flex: 1,
           child: ActionButton(
               text: 'Let\'s Connect',
-              icon: Icon(Icons.front_hand_outlined, size: 16,),
+              icon: Icon(
+                Icons.front_hand_outlined,
+                size: 16,
+              ),
               onPressed: () {
                 showModalBottomSheet<void>(
                   context: context,
@@ -59,8 +61,7 @@ class CTASection extends StatelessWidget {
                   ),
                   builder: (context) => ContactModal(),
                 );
-              }
-          ),
+              }),
         ),
       ],
     );
@@ -72,33 +73,38 @@ class CTASection extends StatelessWidget {
       children: [
         Text(
           'Start a Project',
-          style: theme.textTheme.displayLarge?.copyWith(color: Color(0xFF30374F)),
+          style:
+              theme.textTheme.displayLarge?.copyWith(color: Color(0xFF30374F)),
         ),
         SizedBox(height: 16),
         Center(
           child: Text(
-            'Interested in working together? We should\nqueue up a time to chat. I’ll buy the coffee.',
-            style: theme.textTheme.bodyMedium?.copyWith(color: Color(0xFF30374F)),
+            'Interested in working together? We should queue up a time to chat.\nI’ll buy the coffee.',
+            style:
+                theme.textTheme.bodyMedium?.copyWith(color: Color(0xFF30374F)),
             textAlign: TextAlign.center,
           ),
         ),
         SizedBox(height: 24),
         ActionButton(
-          text: 'Let\'s Connect',
-          icon: Icon(Icons.front_hand_outlined, size: 16,),
-          onPressed: () {
-            showModalBottomSheet<void>(
-              context: context,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(16),
-                  topRight: Radius.circular(16),
+            text: 'Let\'s Connect',
+            icon: Icon(
+              Icons.front_hand_outlined,
+              size: 16,
+            ),
+            onPressed: () {
+              showModalBottomSheet<void>(
+                context: context,
+                isScrollControlled: true,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(16),
+                    topRight: Radius.circular(16),
+                  ),
                 ),
-              ),
-              builder: (context) => ContactModal(),
-            );
-          }
-        ),
+                builder: (context) => ContactModal(),
+              );
+            }),
       ],
     );
   }
@@ -114,28 +120,29 @@ class CTASection extends StatelessWidget {
           children: [
             Container(
               width: size.width,
-              height: isSP ? size.height/3 : size.height/2.5,
+              height: isSP ? size.height / 3 : size.height / 2.5,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(AssetImages.mainVisualBg),
-                  fit: BoxFit.cover,
-                  alignment: Alignment.bottomCenter
-                ),
+                    image: AssetImage(AssetImages.mainVisualBg),
+                    fit: BoxFit.cover,
+                    alignment: Alignment.bottomCenter),
               ),
             ),
             SizedBox(
               width: size.width,
-              height: size.height*.8,
+              height: size.height * .8,
             )
           ],
         ),
         Positioned(
-          top: (isSP ? size.height/3 : size.height/2.5)-60,
-          width: size.width*.8,
+          top: (isSP ? size.height / 3 : size.height / 2.5) - 60,
+          width: size.width * .8,
           child: Column(
             children: [
               renderCTA(context),
-              SizedBox(height: 96,),
+              SizedBox(
+                height: 96,
+              ),
               BottomSection()
             ],
           ),
