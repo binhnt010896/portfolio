@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/constants/metrics.dart';
 import 'package:portfolio/controllers/contact_controller.dart';
-import 'package:portfolio/helpers/misc.dart';
 import 'package:portfolio/screens/home/partials/contact_fields.dart';
-import 'package:portfolio/services/supabase_service.dart';
 import 'package:portfolio/widgets/action_button.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ContactModal extends StatefulWidget {
   const ContactModal({Key? key}) : super(key: key);

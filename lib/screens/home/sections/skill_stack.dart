@@ -14,7 +14,6 @@ class SkillStackSection extends StatefulWidget {
 }
 
 class _SkillStackSectionState extends State<SkillStackSection> {
-
   Widget _renderVerticalDivider() {
     return VerticalDivider(
       width: 8,
@@ -40,7 +39,7 @@ class _SkillStackSectionState extends State<SkillStackSection> {
     Size size = MediaQuery.of(context).size;
     bool isSP = size.width <= MOBILE_MAX_WIDTH;
     return Container(
-        width: isSP ? size.width*.9 : size.width*0.8,
+        width: isSP ? size.width * .9 : size.width * 0.8,
         height: isSP ? 960 : 400,
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 36),
         decoration: BoxDecoration(
@@ -48,30 +47,24 @@ class _SkillStackSectionState extends State<SkillStackSection> {
           image: DecorationImage(
               image: AssetImage(AssetImages.verticalSkillStackBg),
               fit: BoxFit.cover,
-              alignment: Alignment.topCenter
-          ),
+              alignment: Alignment.topCenter),
         ),
         child: CustomColumnRow(
-          crossAxisAlignment: isSP
-              ? CrossAxisAlignment.center
-              : CrossAxisAlignment.start,
-          separator: isSP
-              ? _renderHorizontalDivider()
-              : _renderVerticalDivider(),
-          listType: isSP
-              ? ListType.COLUMN
-              : ListType.ROW,
+          crossAxisAlignment:
+              isSP ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+          separator:
+              isSP ? _renderHorizontalDivider() : _renderVerticalDivider(),
+          listType: isSP ? ListType.COLUMN : ListType.ROW,
           children: [
-            for (Skill _skill in data.skills)
+            for (Skill skill in data.skills)
               Expanded(
                 child: SkillStackItem(
-                  title: _skill.title,
-                  description: _skill.description,
-                  iconAsset: _skill.iconAsset,
+                  title: skill.title,
+                  description: skill.description,
+                  iconAsset: skill.iconAsset,
                 ),
               )
           ],
-        )
-    );
+        ));
   }
 }

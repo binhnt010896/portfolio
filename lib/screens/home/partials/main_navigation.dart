@@ -36,14 +36,14 @@ class _MainNavigationState extends State<MainNavigation> {
         NavigationButton(
           title: 'Works',
           onHover: (index) => setState(() => hoverIndex = index),
-          onPress: () => _homeController.scrollToOffset(1200),
+          onPress: () => _homeController.scrollToSection('selected_projects'),
           index: 1,
           currentIndex: hoverIndex,
         ),
         NavigationButton(
           title: 'Contact me',
           onHover: (index) => setState(() => hoverIndex = index),
-          onPress: () => _homeController.scrollToOffset(3000),
+          onPress: () => _homeController.scrollToSection('cta'),
           index: 2,
           currentIndex: hoverIndex,
         ),

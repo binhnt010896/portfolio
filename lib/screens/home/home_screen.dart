@@ -9,6 +9,7 @@ import 'package:portfolio/screens/home/sections/main_visual.dart'
     deferred as deferred_main_visual;
 import 'package:portfolio/screens/home/sections/selected_projects.dart'
     deferred as deferred_selected_projects;
+import 'package:scroll_to_id/scroll_to_id.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -65,28 +66,43 @@ class _HomeScreenState extends State<HomeScreen> {
               )
             : null,
         extendBodyBehindAppBar: true,
-        body: SingleChildScrollView(
-          controller: _homeController.getScrollController(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              FutureBuilder(
+        body: InteractiveScrollViewer(
+          scrollToId: _homeController.scrollToId.value,
+          children: [
+            ScrollContent(
+              id: 'main_visual',
+              child: FutureBuilder(
                 future: loadMainVisual,
                 builder: (context, snapshot) =>
                     deferred_main_visual.MainVisualSection(),
               ),
-              FutureBuilder(
+            ),
+            ScrollContent(
+              id: 'selected_projects',
+              child: FutureBuilder(
                 future: loadSelectedProjects,
                 builder: (context, snapshot) =>
                     deferred_selected_projects.SelectedProjectsSection(),
               ),
-              FutureBuilder(
+            ),
+            ScrollContent(
+              id: 'cta',
+              child: FutureBuilder(
                 future: loadCTA,
                 builder: (context, snapshot) => deferred_cta.CTASection(),
               ),
-            ],
-          ),
+            ),
+          ],
+          // child: SingleChildScrollView(
+          //   controller: _homeController.getScrollController(),
+          //   child: Column(
+          //     crossAxisAlignment: CrossAxisAlignment.center,
+          //     mainAxisAlignment: MainAxisAlignment.center,
+          //     children: [
+          //
+          //     ],
+          //   ),
+          // ),
         ),
       ),
     );

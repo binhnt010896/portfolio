@@ -19,15 +19,18 @@ Future<void> sendAnalyticsEvent(
   Map<String, dynamic> parameters,
 ) async {
   FirebaseAnalyticsWeb analytics = FirebaseAnalyticsWeb();
-  // Firebase parameter allow up to 100 chars - not null value
   Map<String, dynamic> params = Map<String, dynamic>.from(parameters);
 
   params.removeWhere((key, value) => value == null);
   params.updateAll((key, value) => (value is String && value.length > 100)
       ? value.replaceRange(100, value.length, '')
       : value);
-  return await analytics.logEvent(
-    name: event,
-    parameters: params,
-  );
+  try {
+    await analytics.logEvent(
+      name: event,
+      parameters: params,
+    );
+  } catch (e) {
+    print('Log Error: $e');
+  }
 }
