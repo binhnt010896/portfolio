@@ -4,9 +4,9 @@ import 'dart:js' as js;
 import 'package:go_router/go_router.dart';
 import 'package:portfolio/constants/metrics.dart';
 import 'package:portfolio/data/images.dart';
+import 'package:portfolio/helpers/ga.dart';
 
 class ProjectPreview extends StatelessWidget {
-
   final String title;
   final String description;
   final String illustrationPath;
@@ -18,19 +18,19 @@ class ProjectPreview extends StatelessWidget {
   final bool isImageFirst;
   final List<String> stackSkills;
 
-  const ProjectPreview({
-    Key? key,
-    required this.title,
-    required this.description,
-    required this.illustrationPath,
-    required this.companyName,
-    required this.companyLink,
-    required this.detailPath,
-    required this.appStoreUrl,
-    required this.playStoreUrl,
-    this.isImageFirst = false,
-    this.stackSkills = const []
-  }) : super(key: key);
+  const ProjectPreview(
+      {Key? key,
+      required this.title,
+      required this.description,
+      required this.illustrationPath,
+      required this.companyName,
+      required this.companyLink,
+      required this.detailPath,
+      required this.appStoreUrl,
+      required this.playStoreUrl,
+      this.isImageFirst = false,
+      this.stackSkills = const []})
+      : super(key: key);
 
   Widget _buildStack({required String label, required BuildContext context}) {
     ThemeData theme = Theme.of(context);
@@ -57,7 +57,9 @@ class ProjectPreview extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title, style: theme.textTheme.headlineMedium?.copyWith(color: theme.colorScheme.onPrimary)),
+              Text(title,
+                  style: theme.textTheme.headlineMedium
+                      ?.copyWith(color: theme.colorScheme.onPrimary)),
               SizedBox(height: 16),
               Row(
                 mainAxisSize: MainAxisSize.min,
@@ -67,6 +69,8 @@ class ProjectPreview extends StatelessWidget {
                   SizedBox(width: 8),
                   GestureDetector(
                     onTap: () {
+                      sendAnalyticsEvent(GAEvent.CLICK_COMPANY_SITE,
+                          {GAParam.COMPANY_SITE: companyLink});
                       js.context.callMethod('open', [companyLink]);
                     },
                     child: Image.asset(AssetImages.icOpenInNewTab),
@@ -81,6 +85,8 @@ class ProjectPreview extends StatelessWidget {
                     GestureDetector(
                       child: Image.asset(AssetImages.icDlAppStore, height: 40),
                       onTap: () {
+                        sendAnalyticsEvent(GAEvent.CLICK_DOWNLOAD_PLATFORM,
+                            {GAParam.DOWNLOAD_PLATFORM_URL: appStoreUrl});
                         js.context.callMethod('open', [appStoreUrl]);
                       },
                     ),
@@ -88,6 +94,8 @@ class ProjectPreview extends StatelessWidget {
                     GestureDetector(
                       child: Image.asset(AssetImages.icDlPlayStore, height: 40),
                       onTap: () {
+                        sendAnalyticsEvent(GAEvent.CLICK_DOWNLOAD_PLATFORM,
+                            {GAParam.DOWNLOAD_PLATFORM_URL: appStoreUrl});
                         js.context.callMethod('open', [playStoreUrl]);
                       },
                     ),
@@ -98,7 +106,8 @@ class ProjectPreview extends StatelessWidget {
               Text(
                 description,
                 textAlign: TextAlign.justify,
-                style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onPrimary),
+                style: theme.textTheme.bodyMedium
+                    ?.copyWith(color: theme.colorScheme.onPrimary),
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -108,10 +117,7 @@ class ProjectPreview extends StatelessWidget {
                 spacing: 8,
                 children: [
                   for (String stack in stackSkills)
-                    _buildStack(
-                      context: context,
-                      label: stack
-                    ),
+                    _buildStack(context: context, label: stack),
                 ],
               ),
               // TextButton(
@@ -141,17 +147,17 @@ class ProjectPreview extends StatelessWidget {
       Expanded(
         flex: isSP ? 1 : 2,
         child: Container(
-          constraints: BoxConstraints(
-            maxHeight: size.height*0.6
-          ),
+          constraints: BoxConstraints(maxHeight: size.height * 0.6),
           width: isSP ? size.width : null,
-          padding: EdgeInsets.symmetric(horizontal: isSP ? 18 : 36, vertical: 8),
+          padding:
+              EdgeInsets.symmetric(horizontal: isSP ? 18 : 36, vertical: 8),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16),
-            child: Image.asset(illustrationPath, fit: isSP ? BoxFit.fitWidth : BoxFit.cover),
+            child: Image.asset(illustrationPath,
+                fit: isSP ? BoxFit.fitWidth : BoxFit.cover),
           ),
         ),
       ),
@@ -160,16 +166,17 @@ class ProjectPreview extends StatelessWidget {
       padding: EdgeInsets.all(16),
       height: isSP ? 600 : null,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: Colors.white24
-        )
-      ),
-      child: isSP ? Column(
-          children: (isImageFirst || isSP) ? projectTiles.reversed.toList() : projectTiles
-      ) : Row(
-        children: (isImageFirst || isSP) ? projectTiles.reversed.toList() : projectTiles
-      ),
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: Colors.white24)),
+      child: isSP
+          ? Column(
+              children: (isImageFirst || isSP)
+                  ? projectTiles.reversed.toList()
+                  : projectTiles)
+          : Row(
+              children: (isImageFirst || isSP)
+                  ? projectTiles.reversed.toList()
+                  : projectTiles),
     );
   }
 }

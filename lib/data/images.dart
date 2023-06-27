@@ -3,7 +3,8 @@ class AssetImages {
 
   /// PNG
   static const String mainVisualBg = '$_images/main_visual_bg.png';
-  static const String verticalSkillStackBg = '$_images/vertical_skillstack_bg.png';
+  static const String verticalSkillStackBg =
+      '$_images/vertical_skillstack_bg.png';
   static const String icMbDev = '$_images/ic_mb_dev.png';
   static const String icFeDev = '$_images/ic_fe_dev.png';
   static const String icFltDev = '$_images/ic_flt_dev.png';
@@ -17,7 +18,7 @@ class AssetImages {
   static const String ralaliAgent = '$_images/ralaliagent.png';
 
   ///JPEG / JPG
-  static const String cjTrust = '$_images/cjtrust.jpeg';
+  static const String cjTrust = '$_images/cjtrust.png';
 
   /// SVG
   static const String logoPrimary = '$_images/logo_primary.svg';

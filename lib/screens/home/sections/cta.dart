@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/constants/metrics.dart';
 import 'package:portfolio/data/images.dart';
-import 'package:portfolio/screens/home/sections/bottom_section.dart';
-import 'package:portfolio/screens/home/sections/contact_modal.dart';
-import 'package:portfolio/widgets/action_button.dart';
+import 'package:portfolio/helpers/ga.dart';
+import 'package:portfolio/screens/home/sections/bottom_section.dart'
+    deferred as deferred_bottom_section;
+import 'package:portfolio/screens/home/sections/contact_modal.dart'
+    deferred as deferred_contact_modal;
+import 'package:portfolio/widgets/action_button.dart'
+    deferred as deferred_action_button;
+
+final Future<void> loadBottomSection = deferred_bottom_section.loadLibrary();
+final Future<void> loadContactModal = deferred_contact_modal.loadLibrary();
+final Future<void> loadActionButton = deferred_action_button.loadLibrary();
 
 class CTASection extends StatelessWidget {
   const CTASection({Key? key}) : super(key: key);
@@ -18,6 +26,32 @@ class CTASection extends StatelessWidget {
           borderRadius: BorderRadius.circular(8)),
       padding: isSP ? EdgeInsets.all(24) : EdgeInsets.all(60),
       child: isSP ? _renderSPCTA(context) : _renderPCCTA(context),
+    );
+  }
+
+  Widget _renderActionButton(context) {
+    return FutureBuilder(
+      future: loadActionButton,
+      builder: (context, snapshot) => deferred_action_button.ActionButton(
+          text: 'Let\'s Connect',
+          icon: Icon(
+            Icons.front_hand_outlined,
+            size: 16,
+          ),
+          onPressed: () {
+            sendAnalyticsEvent(GAEvent.CLICK_LETS_CONNECT_MODAL, {});
+            showModalBottomSheet<void>(
+              context: context,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              builder: (context) => FutureBuilder(
+                future: loadContactModal,
+                builder: (context, snapshot) =>
+                    deferred_contact_modal.ContactModal(),
+              ),
+            );
+          }),
     );
   }
 
@@ -45,24 +79,7 @@ class CTASection extends StatelessWidget {
             ),
           ),
         ),
-        Flexible(
-          flex: 1,
-          child: ActionButton(
-              text: 'Let\'s Connect',
-              icon: Icon(
-                Icons.front_hand_outlined,
-                size: 16,
-              ),
-              onPressed: () {
-                showModalBottomSheet<void>(
-                  context: context,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  builder: (context) => ContactModal(),
-                );
-              }),
-        ),
+        Flexible(flex: 1, child: _renderActionButton(context)),
       ],
     );
   }
@@ -86,25 +103,7 @@ class CTASection extends StatelessWidget {
           ),
         ),
         SizedBox(height: 24),
-        ActionButton(
-            text: 'Let\'s Connect',
-            icon: Icon(
-              Icons.front_hand_outlined,
-              size: 16,
-            ),
-            onPressed: () {
-              showModalBottomSheet<void>(
-                context: context,
-                isScrollControlled: true,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16),
-                  ),
-                ),
-                builder: (context) => ContactModal(),
-              );
-            }),
+        _renderActionButton(context)
       ],
     );
   }
@@ -143,7 +142,11 @@ class CTASection extends StatelessWidget {
               SizedBox(
                 height: 96,
               ),
-              BottomSection()
+              FutureBuilder(
+                future: loadBottomSection,
+                builder: (context, snapshot) =>
+                    deferred_bottom_section.BottomSection(),
+              ),
             ],
           ),
         ),

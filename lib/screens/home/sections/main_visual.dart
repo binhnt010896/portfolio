@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:portfolio/constants/metrics.dart';
 import 'package:portfolio/data/images.dart';
+import 'package:portfolio/helpers/ga.dart';
 import 'package:portfolio/screens/home/sections/skill_stack.dart';
 import 'dart:js' as js;
 
@@ -138,6 +139,7 @@ class _MainVisualSectionState extends State<MainVisualSection> {
                         size: 16,
                       ),
                       onPressed: () {
+                        sendAnalyticsEvent(GAEvent.CLICK_DOWNLOAD_CV, {});
                         js.context.callMethod('open', [
                           'https://drive.google.com/file/d/10bFBc6bL27yH70KjqqzUobxtccVNkagj/view'
                         ]);

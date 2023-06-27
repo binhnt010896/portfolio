@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/controllers/home_controller.dart';
 import 'package:portfolio/screens/home/partials/navigation_button.dart';
 
 class MainNavigation extends StatefulWidget {
-
   const MainNavigation({Key? key}) : super(key: key);
 
   @override
@@ -13,7 +11,6 @@ class MainNavigation extends StatefulWidget {
 }
 
 class _MainNavigationState extends State<MainNavigation> {
-
   int hoverIndex = -1;
   final HomeController _homeController = Get.put(HomeController());
 

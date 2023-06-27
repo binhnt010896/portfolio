@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:portfolio/data/images.dart';
 import 'dart:js' as js;
 
+import 'package:portfolio/helpers/ga.dart';
+
 class BottomSection extends StatelessWidget {
   const BottomSection({Key? key}) : super(key: key);
 
@@ -24,12 +26,20 @@ class BottomSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               GestureDetector(
-                onTap: () => js.context.callMethod('open', ['https://github.com/binhnt010896/']),
+                onTap: () {
+                  sendAnalyticsEvent(GAEvent.CLICK_GITHUB, {});
+                  js.context
+                      .callMethod('open', ['https://github.com/binhnt010896/']);
+                },
                 child: SvgPicture.asset(AssetImages.icGithub, height: 28),
               ),
               SizedBox(width: 24),
               GestureDetector(
-                onTap: () => js.context.callMethod('open', ['https://www.linkedin.com/in/binhnt010896/']),
+                onTap: () {
+                  sendAnalyticsEvent(GAEvent.CLICK_LINKED_IN, {});
+                  js.context.callMethod(
+                      'open', ['https://www.linkedin.com/in/binhnt010896/']);
+                },
                 child: SvgPicture.asset(AssetImages.icLinkedIn, height: 28),
               )
             ],
