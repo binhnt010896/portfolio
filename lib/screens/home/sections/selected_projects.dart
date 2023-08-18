@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/data/images.dart';
-import 'package:portfolio/screens/home/partials/project_preview.dart'
-    deferred as deferred_project_preview;
+import 'package:portfolio/screens/home/partials/project_preview.dart';
 
 class SelectedProjectsSection extends StatefulWidget {
   const SelectedProjectsSection({Key? key}) : super(key: key);
@@ -12,15 +11,6 @@ class SelectedProjectsSection extends StatefulWidget {
 }
 
 class _SelectedProjectsSectionState extends State<SelectedProjectsSection> {
-  final Future<void> loadProjectPreview =
-      deferred_project_preview.loadLibrary();
-
-  Widget _renderProjectPreviewItem(Widget widget, library) {
-    return FutureBuilder(
-      future: library,
-      builder: (context, snapshot) => widget,
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,59 +33,51 @@ class _SelectedProjectsSectionState extends State<SelectedProjectsSection> {
             ),
             Column(
               children: [
-                _renderProjectPreviewItem(
-                    deferred_project_preview.ProjectPreview(
-                        title: 'Ralali Connect',
-                        description:
-                            'Ralali Connect mobile application allows merchants to setup storefront and gain access to the business community.',
-                        companyName: 'Ralali',
-                        companyLink: 'https://www.ralali.com/',
-                        detailPath: 'projects/ralali-connect',
-                        illustrationPath: AssetImages.ralaliConnect,
-                        playStoreUrl: 'https://play.google.com/store/apps/details?id=com.ralali.konekto',
-                        appStoreUrl: 'https://apps.apple.com/id/app/ralali-connect/id1590298867',
-                        stackSkills: [
-                          'Dart',
-                          'Flutter',
-                          'JavaScript',
-                          'VueJS'
-                        ]),
-                    loadProjectPreview),
+                ProjectPreview(
+                  title: 'My-T Wallet',
+                  description:
+                  'My-T Wallet is a crypto app enabling secure token transactions and staking for earning more tokens.',
+                  companyName: 'Tokoin',
+                  companyLink: 'https://www.tokoin.io/',
+                  detailPath: 'projects/t-wallet',
+                  illustrationPath: AssetImages.tWallet,
+                  playStoreUrl: 'https://play.google.com/store/apps/details?id=com.tokoin.wallet',
+                  appStoreUrl: 'https://apps.apple.com/my/app/tokow/id1489276175',
+                  stackSkills: [
+                    'Dart',
+                    'Flutter',
+                  ]),
                 SizedBox(height: 24),
-                _renderProjectPreviewItem(
-                    deferred_project_preview.ProjectPreview(
-                      title: 'Ralali Agent',
-                      description:
-                          'Ralali Agent is a platform which helps user earn commission in their spare time via surveys, promotions, and product sales.',
-                      companyName: 'Ralali',
-                      companyLink: 'https://www.ralali.com/',
-                      detailPath: 'projects/ralali-agent',
-                      illustrationPath: AssetImages.ralaliAgent,
-                      playStoreUrl:
-                          'https://play.google.com/store/apps/details?id=com.ralali.bigagent.android',
-                      appStoreUrl:
-                          'https://apps.apple.com/tc/app/ralali-agent-iniwaktunyagerak/id1623070818',
-                      isImageFirst: true,
-                      stackSkills: ['React Native'],
-                    ),
-                    loadProjectPreview),
+                ProjectPreview(
+                  title: 'Ralali Agent',
+                  description:
+                  'Ralali Agent is a platform which helps user earn commission in their spare time via surveys, promotions, and product sales.',
+                  companyName: 'Ralali',
+                  companyLink: 'https://www.ralali.com/',
+                  detailPath: 'projects/ralali-agent',
+                  illustrationPath: AssetImages.ralaliAgent,
+                  playStoreUrl:
+                  'https://play.google.com/store/apps/details?id=com.ralali.bigagent.android',
+                  appStoreUrl:
+                  'https://apps.apple.com/tc/app/ralali-agent-iniwaktunyagerak/id1623070818',
+                  isImageFirst: true,
+                  stackSkills: ['React Native'],
+                ),
                 SizedBox(height: 24),
-                _renderProjectPreviewItem(
-                    deferred_project_preview.ProjectPreview(
-                      title: 'CJ LIFE',
-                      description:
-                          'CJ LIFE assists user in collectively managing various insurances they have subscribed to, as well as contract details, insurance premiums and contract period.',
-                      companyName: 'CJトラスト株式会社',
-                      companyLink: 'https://cj-trust.co.jp/',
-                      detailPath: 'projects/cj-life',
-                      illustrationPath: AssetImages.cjTrust,
-                      playStoreUrl:
-                          'https://play.google.com/store/apps/details?id=com.cjtrust.cjlife',
-                      appStoreUrl:
-                          'https://apps.apple.com/jp/app/cj-life/id1558960279',
-                      stackSkills: ['Dart', 'Flutter'],
-                    ),
-                    loadProjectPreview),
+                ProjectPreview(
+                  title: 'CJ LIFE',
+                  description:
+                  'CJ LIFE assists user in collectively managing various insurances they have subscribed to, as well as contract details, insurance premiums and contract period.',
+                  companyName: 'CJトラスト株式会社',
+                  companyLink: 'https://cj-trust.co.jp/',
+                  detailPath: 'projects/cj-life',
+                  illustrationPath: AssetImages.cjTrust,
+                  playStoreUrl:
+                  'https://play.google.com/store/apps/details?id=com.cjtrust.cjlife',
+                  appStoreUrl:
+                  'https://apps.apple.com/jp/app/cj-life/id1558960279',
+                  stackSkills: ['Dart', 'Flutter'],
+                ),
               ],
             )
           ],

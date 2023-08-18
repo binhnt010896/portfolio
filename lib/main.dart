@@ -1,10 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:portfolio/constants/env.dart';
 import 'package:portfolio/constants/metrics.dart';
 import 'package:portfolio/constants/theme.dart';
 import 'package:portfolio/router.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 Future<void> main() async {
   // await dotenv.load(fileName: '.env');
@@ -14,6 +17,8 @@ Future<void> main() async {
           appId: '1:298069639803:web:1ecd57dfa02acb7fc118de',
           messagingSenderId: '298069639803',
           projectId: 'portfolio-e6526'));
+  /// Remove hash (#) icon from url
+  setPathUrlStrategy();
   await Supabase.initialize(
     // url: dotenv.env[SupabaseEnv.supabaseUrl] ?? '',
     // anonKey: dotenv.env[SupabaseEnv.supabaseAnonKey] ?? '',

@@ -32,26 +32,35 @@ class CTASection extends StatelessWidget {
   Widget _renderActionButton(context) {
     return FutureBuilder(
       future: loadActionButton,
-      builder: (context, snapshot) => deferred_action_button.ActionButton(
-          text: 'Let\'s Connect',
-          icon: Icon(
-            Icons.front_hand_outlined,
-            size: 16,
-          ),
-          onPressed: () {
-            sendAnalyticsEvent(GAEvent.CLICK_LETS_CONNECT_MODAL, {});
-            showModalBottomSheet<void>(
-              context: context,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          return deferred_action_button.ActionButton(
+              text: 'Let\'s Connect',
+              icon: Icon(
+                Icons.front_hand_outlined,
+                size: 16,
               ),
-              builder: (context) => FutureBuilder(
-                future: loadContactModal,
-                builder: (context, snapshot) =>
-                    deferred_contact_modal.ContactModal(),
-              ),
-            );
-          }),
+              onPressed: () {
+                sendAnalyticsEvent(GAEvent.CLICK_LETS_CONNECT_MODAL, {});
+                showModalBottomSheet<void>(
+                  context: context,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  builder: (context) => FutureBuilder(
+                    future: loadContactModal,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        return deferred_contact_modal.ContactModal();
+                      }
+                      return Container();
+                    }
+                  ),
+                );
+              });
+        }
+        return Container();
+      },
     );
   }
 
@@ -144,8 +153,12 @@ class CTASection extends StatelessWidget {
               ),
               FutureBuilder(
                 future: loadBottomSection,
-                builder: (context, snapshot) =>
-                    deferred_bottom_section.BottomSection(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return deferred_bottom_section.BottomSection();
+                  }
+                  return Container();
+                }
               ),
             ],
           ),

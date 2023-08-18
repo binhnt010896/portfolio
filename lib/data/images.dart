@@ -16,6 +16,7 @@ class AssetImages {
   static const String avatar = '$_images/avatar.png';
   static const String ralaliConnect = '$_images/ralaliconnect.png';
   static const String ralaliAgent = '$_images/ralaliagent.png';
+  static const String tWallet = '$_images/t-wallet.png';
 
   ///JPEG / JPG
   static const String cjTrust = '$_images/cjtrust.png';

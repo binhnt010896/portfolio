@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'dart:js' as js;
 
 import 'package:go_router/go_router.dart';
+import 'package:octo_image/octo_image.dart';
 import 'package:portfolio/constants/metrics.dart';
 import 'package:portfolio/data/images.dart';
 import 'package:portfolio/helpers/ga.dart';
@@ -120,6 +122,7 @@ class ProjectPreview extends StatelessWidget {
                     _buildStack(context: context, label: stack),
                 ],
               ),
+              /// TODO: Go to Detail
               // TextButton(
               //   style: ButtonStyle(
               //       padding: MaterialStateProperty.all(EdgeInsets.only(top: 36))
@@ -156,8 +159,12 @@ class ProjectPreview extends StatelessWidget {
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16),
-            child: Image.asset(illustrationPath,
-                fit: isSP ? BoxFit.fitWidth : BoxFit.cover),
+            child: OctoImage(
+              image: AssetImage(illustrationPath),
+              placeholderBuilder: OctoPlaceholder.blurHash('LEHV6nWB2yk8pyo0adR*.7kCMdnj'),
+              errorBuilder: OctoError.icon(color: Colors.red),
+              fit: isSP ? BoxFit.fitWidth : BoxFit.cover
+            ),
           ),
         ),
       ),

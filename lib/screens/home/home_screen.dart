@@ -9,6 +9,8 @@ import 'package:portfolio/screens/home/sections/main_visual.dart'
     deferred as deferred_main_visual;
 import 'package:portfolio/screens/home/sections/selected_projects.dart'
     deferred as deferred_selected_projects;
+import 'package:portfolio/screens/home/sections/testimonials.dart'
+    deferred as deferred_testimonials;
 import 'package:scroll_to_id/scroll_to_id.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -26,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final Future<void> loadSelectedProjects =
       deferred_selected_projects.loadLibrary();
   final Future<void> loadCTA = deferred_cta.loadLibrary();
+  final Future<void> loadTestimonials = deferred_testimonials.loadLibrary();
 
   @override
   void initState() {
@@ -52,7 +55,12 @@ class _HomeScreenState extends State<HomeScreen> {
           preferredSize: Size(size.width, 90),
           child: FutureBuilder(
             future: loadHeader,
-            builder: (context, snapshot) => deferred_header.Header(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                return deferred_header.Header();
+              }
+              return Container();
+            },
           ),
         ),
         floatingActionButton: _homeController.getShouldScrollToTop()
@@ -73,36 +81,47 @@ class _HomeScreenState extends State<HomeScreen> {
               id: 'main_visual',
               child: FutureBuilder(
                 future: loadMainVisual,
-                builder: (context, snapshot) =>
-                    deferred_main_visual.MainVisualSection(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return deferred_main_visual.MainVisualSection();
+                  }
+                  return Container();
+                },
               ),
             ),
             ScrollContent(
               id: 'selected_projects',
               child: FutureBuilder(
                 future: loadSelectedProjects,
-                builder: (context, snapshot) =>
-                    deferred_selected_projects.SelectedProjectsSection(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return deferred_selected_projects.SelectedProjectsSection();
+                  }
+                  return Container();
+                },
               ),
             ),
+            // ScrollContent(
+            //   id: 'testimonials',
+            //   child: FutureBuilder(
+            //     future: loadTestimonials,
+            //     builder: (context, snapshot) =>
+            //         deferred_testimonials.TestimonialSection(),
+            //   ),
+            // ),
             ScrollContent(
               id: 'cta',
               child: FutureBuilder(
                 future: loadCTA,
-                builder: (context, snapshot) => deferred_cta.CTASection(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return deferred_cta.CTASection();
+                  }
+                  return Container();
+                },
               ),
             ),
           ],
-          // child: SingleChildScrollView(
-          //   controller: _homeController.getScrollController(),
-          //   child: Column(
-          //     crossAxisAlignment: CrossAxisAlignment.center,
-          //     mainAxisAlignment: MainAxisAlignment.center,
-          //     children: [
-          //
-          //     ],
-          //   ),
-          // ),
         ),
       ),
     );
