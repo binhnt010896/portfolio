@@ -25,7 +25,7 @@ class BottomSection extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              GestureDetector(
+              InkWell(
                 onTap: () {
                   sendAnalyticsEvent(GAEvent.CLICK_GITHUB, {});
                   js.context
@@ -34,7 +34,7 @@ class BottomSection extends StatelessWidget {
                 child: SvgPicture.asset(AssetImages.icGithub, height: 28),
               ),
               SizedBox(width: 24),
-              GestureDetector(
+              InkWell(
                 onTap: () {
                   sendAnalyticsEvent(GAEvent.CLICK_LINKED_IN, {});
                   js.context.callMethod(

@@ -101,14 +101,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
             ),
-            // ScrollContent(
-            //   id: 'testimonials',
-            //   child: FutureBuilder(
-            //     future: loadTestimonials,
-            //     builder: (context, snapshot) =>
-            //         deferred_testimonials.TestimonialSection(),
-            //   ),
-            // ),
+            ScrollContent(
+              id: 'testimonials',
+              child: FutureBuilder(
+                future: loadTestimonials,
+                builder: (context, snapshot) =>
+                    deferred_testimonials.TestimonialSection(),
+              ),
+            ),
             ScrollContent(
               id: 'cta',
               child: FutureBuilder(

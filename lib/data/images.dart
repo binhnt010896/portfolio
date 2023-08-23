@@ -20,6 +20,8 @@ class AssetImages {
 
   ///JPEG / JPG
   static const String cjTrust = '$_images/cjtrust.png';
+  static const String trongDinh = '$_images/trong_dinh.jpeg';
+  static const String nikita = '$_images/nikita.jpeg';
 
   /// SVG
   static const String logoPrimary = '$_images/logo_primary.svg';

@@ -41,10 +41,17 @@ class _MainNavigationState extends State<MainNavigation> {
           currentIndex: hoverIndex,
         ),
         NavigationButton(
+          title: 'Testimonials',
+          onHover: (index) => setState(() => hoverIndex = index),
+          onPress: () => _homeController.scrollToSection('testimonials'),
+          index: 2,
+          currentIndex: hoverIndex,
+        ),
+        NavigationButton(
           title: 'Contact me',
           onHover: (index) => setState(() => hoverIndex = index),
           onPress: () => _homeController.scrollToSection('cta'),
-          index: 2,
+          index: 3,
           currentIndex: hoverIndex,
         ),
       ],

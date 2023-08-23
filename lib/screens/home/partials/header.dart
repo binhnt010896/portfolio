@@ -20,11 +20,12 @@ class _HeaderState extends State<Header> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData theme = Theme.of(context);
     Size size = MediaQuery.of(context).size;
     bool isSP = size.width <= MOBILE_MAX_WIDTH;
     return AppBar(
-      backgroundColor: Colors.transparent,
+      backgroundColor: _homeController.shouldShowScrollToTop.value
+        ? Theme.of(context).colorScheme.background.withOpacity(.3)
+        : Colors.transparent,
       elevation: 0,
       toolbarHeight: 80,
       flexibleSpace: Container(

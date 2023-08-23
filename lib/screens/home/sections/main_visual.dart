@@ -120,7 +120,7 @@ class _MainVisualSectionState extends State<MainVisualSection> {
                       child: Image.asset(AssetImages.avatar),
                     ),
                   ),
-                  Text('Hi, I\'m Binh. Nice to meet you',
+                  Text('Hi, I\'m Binh.\nBut you can call me George!',
                       style: theme.textTheme.headlineLarge,
                       textAlign: TextAlign.center),
                   SizedBox(height: 16),

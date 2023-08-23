@@ -1,6 +1,13 @@
+import 'package:expandable_page_view/expandable_page_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:octo_image/octo_image.dart';
 import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
 import 'package:portfolio/constants/metrics.dart';
+import 'package:portfolio/data/images.dart';
+import 'dart:js' as js;
+
+import 'package:readmore/readmore.dart';
 
 class TestimonialSection extends StatefulWidget {
   const TestimonialSection({Key? key}) : super(key: key);
@@ -56,34 +63,63 @@ class _TestimonialSectionState extends State<TestimonialSection> {
             ),
             if (!isSP)
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(child: _renderTestimonialItem(1),),
+                  _renderTestimonialItem(
+                      'Trong Dinh, CTO of Tokoin',
+                      '“George is one of the finest engineers I’ve had the privilege of collaborating with. He possesses a robust technical background and excels in communication. He effortlessly tackles new technical challenges with a strong commitment, consistently delivering high-quality solutions.”',
+                      AssetImages.trongDinh,
+                      'https://www.linkedin.com/in/trongdth/',
+                  ),
                   const SizedBox(width: 24),
-                  Expanded(child: _renderTestimonialItem(2),),
-                  const SizedBox(width: 24),
-                  Expanded(child: _renderTestimonialItem(3),),
+                  _renderTestimonialItem(
+                      'Nikita Devy Haryono,\nProduct Manager of Ralali',
+                      '“Working alongside Binh has been an absolute delight - his technical prowess, punctuality in task delivery, and commitment to meeting targets have consistently impressed our team. Binh\'s contributions extend beyond his coding skills; his ability to provide invaluable insights from multiple perspectives has greatly enriched the quality of our work and led to innovative solutions. His friendly and collaborative nature make him not only a wonderful coworker but also a supportive team player, always willing to lend a hand to his colleagues. In all aspects, Binh embodies the ideal developer and teammate, and I wholeheartedly recommend him as a true asset to any project or team fortunate enough to have him.”',
+                      AssetImages.nikita,
+                      'https://www.linkedin.com/in/nikita-devy-haryono/',
+                  ),
+                  // const SizedBox(width: 24),
+                  // Expanded(child: _renderTestimonialItem(
+                  //   'Someone',
+                  //   '“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel dolor vitae lacus luctus mollis. Cras porttitor sagittis mi vel posuere. Donec dapibus rutrum tortor, in porttitor justo elementum”',
+                  //   null
+                  // )),
                 ],
               )
             else
               Column(
                 children: [
-                  SizedBox(
-                    height: size.height*.7,
-                    width: size.width,
-                    child: PageView(
-                      controller: _controller,
-                      children: [
-                        _renderTestimonialItem(1),
-                        _renderTestimonialItem(2),
-                        _renderTestimonialItem(3),
-                      ],
-                    ),
+                  ExpandablePageView(
+                    controller: _controller,
+                    children: [
+                      _renderTestimonialItem(
+                        'Trong Dinh, CTO of Tokoin',
+                        '“George is one of the finest engineers I’ve had the privilege of collaborating with. He possesses a robust technical background and excels in communication. He effortlessly tackles new technical challenges with a strong commitment, consistently delivering high-quality solutions.”',
+                        AssetImages.trongDinh,
+                        'https://www.linkedin.com/in/trongdth/',
+                        true
+                      ),
+                      _renderTestimonialItem(
+                        'Nikita Devy Haryono, Product Manager of Ralali',
+                        '“Working alongside Binh has been an absolute delight - his technical prowess, punctuality in task delivery, and commitment to meeting targets have consistently impressed our team. Binh\'s contributions extend beyond his coding skills; his ability to provide invaluable insights from multiple perspectives has greatly enriched the quality of our work and led to innovative solutions. His friendly and collaborative nature make him not only a wonderful coworker but also a supportive team player, always willing to lend a hand to his colleagues. In all aspects, Binh embodies the ideal developer and teammate, and I wholeheartedly recommend him as a true asset to any project or team fortunate enough to have him.”',
+                        AssetImages.nikita,
+                        'https://www.linkedin.com/in/nikita-devy-haryono/',
+                        true
+                      ),
+                      // _renderTestimonialItem(
+                      //   'Someone',
+                      //   '“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel dolor vitae lacus luctus mollis. Cras porttitor sagittis mi vel posuere. Donec dapibus rutrum tortor, in porttitor justo elementum”',
+                      //   null,
+                      //   true
+                      // ),
+                    ],
                   ),
                   Padding(
                     padding: const EdgeInsets.all(24),
                     child: PageViewDotIndicator(
                       currentItem: currentPage,
-                      count: 3,
+                      count: 2,
                       unselectedColor: Theme.of(context).colorScheme.secondary,
                       selectedColor: Theme.of(context).colorScheme.primary,
                       duration: const Duration(milliseconds: 200),
@@ -103,9 +139,10 @@ class _TestimonialSectionState extends State<TestimonialSection> {
         ));
   }
 
-  _renderTestimonialItem(index) {
+  _renderTestimonialItem(String person, String quote, String? image, String linkedIn, [bool isSp = false]) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 24),
+      width: !isSp ? 400 : null,
       clipBehavior: Clip.antiAlias,
       decoration: ShapeDecoration(
         shape: RoundedRectangleBorder(
@@ -120,8 +157,13 @@ class _TestimonialSectionState extends State<TestimonialSection> {
         children: [
           Row(
             children: [
-              Expanded(
-                child: Image.network("https://picsum.photos/seed/$index/500/500"),
+              OctoImage(
+                image: AssetImage(image ?? AssetImages.flutterLogoWhite),
+                placeholderBuilder: OctoPlaceholder.blurHash('LEHV6nWB2yk8pyo0adR*.7kCMdnj'),
+                errorBuilder: OctoError.icon(color: Colors.red),
+                width: 140,
+                height: 140,
+                fit: isSp ? BoxFit.fitWidth : BoxFit.cover
               ),
               Expanded(child: Container())
             ],
@@ -132,25 +174,34 @@ class _TestimonialSectionState extends State<TestimonialSection> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                '“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel dolor vitae lacus luctus mollis. Cras porttitor sagittis mi vel posuere. Donec dapibus rutrum tortor, in porttitor justo elementum in”',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                ),
+              ReadMoreText(
+                quote,
+                trimLines: 5,
+                trimMode: TrimMode.Line,
+                delimiter: '...\t\t',
+                lessStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary),
+                moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary),
               ),
               const SizedBox(height: 26),
               Text(
-                'Trong Dinh, CTO of Tokoin',
+                '- $person',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.w500,
                 ),
               ),
+              const SizedBox(height: 16),
+              InkWell(
+                onTap: () {
+                  js.context.callMethod(
+                      'open', [linkedIn]);
+                },
+                child: SvgPicture.asset(AssetImages.icLinkedIn, height: 28),
+              )
             ],
           ),
+
         ],
       ),
     );

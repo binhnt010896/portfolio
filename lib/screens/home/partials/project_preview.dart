@@ -69,7 +69,7 @@ class ProjectPreview extends StatelessWidget {
                 children: [
                   Text('by $companyName', style: theme.textTheme.labelMedium),
                   SizedBox(width: 8),
-                  GestureDetector(
+                  InkWell(
                     onTap: () {
                       sendAnalyticsEvent(GAEvent.CLICK_COMPANY_SITE,
                           {GAParam.COMPANY_SITE: companyLink});
@@ -84,7 +84,7 @@ class ProjectPreview extends StatelessWidget {
                 fit: BoxFit.fitWidth,
                 child: Row(
                   children: [
-                    GestureDetector(
+                    InkWell(
                       child: Image.asset(AssetImages.icDlAppStore, height: 40),
                       onTap: () {
                         sendAnalyticsEvent(GAEvent.CLICK_DOWNLOAD_PLATFORM,
@@ -93,7 +93,7 @@ class ProjectPreview extends StatelessWidget {
                       },
                     ),
                     SizedBox(width: 16),
-                    GestureDetector(
+                    InkWell(
                       child: Image.asset(AssetImages.icDlPlayStore, height: 40),
                       onTap: () {
                         sendAnalyticsEvent(GAEvent.CLICK_DOWNLOAD_PLATFORM,
