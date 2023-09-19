@@ -52,6 +52,9 @@ dependencies:
   supabase_flutter: ^1.6.2
   url_strategy: ^0.2.0
   web_browser_detect: ^2.0.3
+  webview_flutter: ^4.2.3
+  webview_flutter_platform_interface: ^2.5.0
+  flutter_widget_from_html: ^0.10.3
 
 dev_dependencies:
   statsfl: ^2.3.0
