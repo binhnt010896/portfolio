@@ -1,61 +1,258 @@
 import 'package:flutter/material.dart';
 
-ThemeData lightTheme = ThemeData(
-  primaryColor: Color(0xFF0477BF),
-  fontFamily: 'Lato',
-  colorScheme: ColorScheme(
-    primary: Color(0xFF0477BF),
-    secondary: Color(0xFFED5940),
-    tertiary: Color(0xFF7EB6D9),
-    background: Color(0xFFF2F2F2),
-    brightness: Brightness.light,
-    onPrimary: Colors.white,
-    onSecondary: Colors.white,
-    // onPrimaryContainer: Color(0xFFED5940),
-    onPrimaryContainer: Colors.white70,
-    error: Color(0xFFB90E0A),
-    onError: Colors.white,
-    onBackground: Colors.black54,
-    surface: Color(0xFF0477BF),
-    onSurface: Colors.white,
-  ),
-  textTheme: TextTheme(
-    headlineLarge: TextStyle(fontSize: 48, fontWeight: FontWeight.bold, height: 1.5),
-    headlineMedium: TextStyle(fontSize: 32, fontWeight: FontWeight.w600, height: 1.5),
-    headlineSmall: TextStyle(fontSize: 16, height: 1.5),
-    labelMedium: TextStyle(fontSize: 16, color: Color(0xFFED5940), fontWeight: FontWeight.w600, height: 1.5),
-    bodyLarge: TextStyle(fontSize: 24, height: 1.5),
-    bodyMedium: TextStyle(fontSize: 18, height: 1.5),
-    bodySmall: TextStyle(fontSize: 12, height: 1.5),
-  ),
-);
+/// Centralised colour palette for the portfolio.
+///
+/// RULE: No inline colours anywhere in the project. Every colour used in a
+/// widget must reference one of these constants.
+class AppColors {
+  AppColors._();
 
-ThemeData darkTheme = ThemeData(
-  primaryColor: Color(0xFF386785),
-  fontFamily: 'Lato',
-  colorScheme: ColorScheme(
-    primary: Color(0xFF386785),
-    secondary: Color(0xFF05EBC7),
-    tertiary: Color(0xFF7EB6D9),
-    background: Color(0xFF313536),
+  static const Color background = Color(0xFF282C33);
+  static const Color primary = Color(0xFFC778DD); // purple accent
+  static const Color white = Color(0xFFFFFFFF);
+  static const Color gray = Color(0xFFABB2BF);
+  static const Color line = Color(0xFFC778DD);
+  static const Color border = Color(0xFFABB2BF);
+  static const Color cardBackground = Color(0xFF2A2E36);
+  static const Color scrim = Color(0x99282C33);
+  static const Color transparent = Colors.transparent;
+}
+
+/// Centralised typography. The whole site uses the `Fira Code` monospace family.
+///
+/// RULE: No inline `TextStyle` anywhere in the project. Every piece of text must
+/// reference one of these named styles (use the responsive getters in
+/// [AppTextStyles] for headings that shrink on small screens).
+class AppTextStyles {
+  AppTextStyles._();
+
+  static const String fontFamily = 'Fira Code';
+
+  // --- Headings -------------------------------------------------------------
+  static const TextStyle heroTitle = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w600,
+    fontSize: 32,
+    height: 1.31,
+    color: AppColors.white,
+  );
+
+  static const TextStyle heroTitleMobile = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w600,
+    fontSize: 24,
+    height: 1.31,
+    color: AppColors.white,
+  );
+
+  static const TextStyle sectionTitle = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w600,
+    fontSize: 32,
+    height: 1.31,
+    color: AppColors.white,
+  );
+
+  static const TextStyle sectionTitleMobile = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w600,
+    fontSize: 24,
+    height: 1.31,
+    color: AppColors.white,
+  );
+
+  static const TextStyle sectionHash = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w600,
+    fontSize: 32,
+    height: 1.31,
+    color: AppColors.primary,
+  );
+
+  static const TextStyle sectionHashMobile = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w600,
+    fontSize: 24,
+    height: 1.31,
+    color: AppColors.primary,
+  );
+
+  static const TextStyle cardTitle = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w500,
+    fontSize: 24,
+    height: 1.31,
+    color: AppColors.white,
+  );
+
+  static const TextStyle quote = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w500,
+    fontSize: 24,
+    height: 1.31,
+    color: AppColors.white,
+  );
+
+  static const TextStyle quoteMobile = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w500,
+    fontSize: 18,
+    height: 1.31,
+    color: AppColors.white,
+  );
+
+  // --- Body -----------------------------------------------------------------
+  static const TextStyle heroSubtitle = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    height: 1.56,
+    color: AppColors.gray,
+  );
+
+  static const TextStyle body = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    height: 1.5,
+    color: AppColors.gray,
+  );
+
+  static const TextStyle bodyWhite = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    height: 1.5,
+    color: AppColors.white,
+  );
+
+  static const TextStyle bold = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w600,
+    fontSize: 16,
+    height: 1.31,
+    color: AppColors.white,
+  );
+
+  // --- Labels / interactive -------------------------------------------------
+  static const TextStyle button = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
+    height: 1.31,
+    color: AppColors.white,
+  );
+
+  static const TextStyle navLink = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
+    height: 1.31,
+    color: AppColors.gray,
+  );
+
+  static const TextStyle navHash = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
+    height: 1.31,
+    color: AppColors.primary,
+  );
+
+  static const TextStyle navLinkActive = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
+    height: 1.31,
+    color: AppColors.white,
+  );
+
+  static const TextStyle logoName = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w500,
+    fontSize: 24,
+    height: 1.31,
+    color: AppColors.white,
+  );
+
+  static const TextStyle tag = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    height: 1.31,
+    color: AppColors.gray,
+  );
+
+  static const TextStyle tagPrimary = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    height: 1.31,
+    color: AppColors.primary,
+  );
+
+  static const TextStyle skillItem = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    height: 1.31,
+    color: AppColors.gray,
+  );
+
+  static const TextStyle badge = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    height: 1.31,
+    color: AppColors.gray,
+  );
+
+  static const TextStyle copyright = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    height: 1.31,
+    color: AppColors.gray,
+  );
+
+  static const TextStyle footerName = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w500,
+    fontSize: 24,
+    height: 1.31,
+    color: AppColors.white,
+  );
+
+  // --- Responsive helpers ---------------------------------------------------
+  static TextStyle heroTitleFor(bool isMobile) =>
+      isMobile ? heroTitleMobile : heroTitle;
+
+  static TextStyle sectionTitleFor(bool isMobile) =>
+      isMobile ? sectionTitleMobile : sectionTitle;
+
+  static TextStyle sectionHashFor(bool isMobile) =>
+      isMobile ? sectionHashMobile : sectionHash;
+
+  static TextStyle quoteFor(bool isMobile) => isMobile ? quoteMobile : quote;
+}
+
+/// The single application theme (dark, code-editor aesthetic).
+ThemeData buildAppTheme() {
+  return ThemeData(
+    useMaterial3: true,
     brightness: Brightness.dark,
-    onPrimary: Colors.white,
-    onSecondary: Colors.white,
-    onPrimaryContainer: Color(0xFFED5940),
-    error: Color(0xFFB90E0A),
-    onError: Colors.white,
-    onBackground: Colors.white,
-      surface: Color(0xFF0477BF),
-      onSurface: Colors.white
-  ),
-  textTheme: TextTheme(
-      headlineLarge: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
-      headlineMedium: TextStyle(fontSize: 32, fontWeight: FontWeight.w600),
-      headlineSmall: TextStyle(fontSize: 24),
-      labelMedium: TextStyle(fontSize: 16, color: Color(0xFF0477BF))
-  ),
-);
-
-TextTheme lightTextTheme = TextTheme(
-  headlineLarge: TextStyle()
-);
+    scaffoldBackgroundColor: AppColors.background,
+    fontFamily: AppTextStyles.fontFamily,
+    colorScheme: const ColorScheme.dark(
+      primary: AppColors.primary,
+      onPrimary: AppColors.white,
+      secondary: AppColors.primary,
+      onSecondary: AppColors.white,
+      surface: AppColors.background,
+      onSurface: AppColors.white,
+    ),
+    textSelectionTheme: const TextSelectionThemeData(
+      cursorColor: AppColors.primary,
+    ),
+  );
+}
