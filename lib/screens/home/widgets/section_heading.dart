@@ -21,10 +21,10 @@ class SectionHeading extends StatelessWidget {
           Text('#', style: AppTextStyles.sectionHashFor(isMobile)),
           const SizedBox(width: 4),
           Flexible(
-            child: Text(
+            child: SelectableText(
               title,
               style: AppTextStyles.sectionTitleFor(isMobile),
-              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
             ),
           ),
           const SizedBox(width: 16),

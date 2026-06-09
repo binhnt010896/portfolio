@@ -32,7 +32,7 @@ class QuoteSection extends StatelessWidget {
                 Text('"', style: markStyle),
                 const SizedBox(width: 12),
                 Expanded(
-                  child: Text(
+                  child: SelectableText(
                     PortfolioData.quote,
                     style: AppTextStyles.quoteFor(isMobile),
                     textAlign: TextAlign.center,
@@ -57,7 +57,7 @@ class QuoteSection extends StatelessWidget {
                     horizontal: 16,
                     vertical: 8,
                   ),
-                  child: Text(
+                  child: SelectableText(
                     PortfolioData.quoteAuthor,
                     style: AppTextStyles.bodyWhite,
                   ),

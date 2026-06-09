@@ -9,6 +9,7 @@ class ImagesDirectory {
 
   // Profile / branding
   static const String avatar = '$_base/avatar.png';
+  static const String avatar2 = '$_base/avatar_2.png';
   static const String logoNoText = '$_base/logo_no_text.png';
   static const String headerLogo = '$_base/header_logo.png';
   static const String headerLogoInverted = '$_base/header_logo_inverted.png';
@@ -32,6 +33,7 @@ class ImagesDirectory {
   static const String ralaliConnect = '$_base/ralaliconnect.png';
   static const String ralaliAgent = '$_base/ralaliagent.png';
   static const String cjLife = '$_base/cjtrust.jpeg';
+  static const String pizza4Ps = '$_base/pizza4ps.png';
 
   // Project logos
   static const String ralaliConnectLogo = '$_base/ralaliconnect_logo.webp';

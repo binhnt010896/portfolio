@@ -17,7 +17,7 @@ class StatusBadge extends StatelessWidget {
           children: [
             Container(width: 16, height: 16, color: AppColors.primary),
             const SizedBox(width: 8),
-            Flexible(child: Text(text, style: AppTextStyles.badge)),
+            Flexible(child: SelectableText(text, style: AppTextStyles.badge)),
           ],
         ),
       ),

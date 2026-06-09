@@ -17,7 +17,7 @@ class AboutSection extends StatelessWidget {
     final bio = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(PortfolioData.aboutMe, style: AppTextStyles.body),
+        SelectableText(PortfolioData.aboutMe, style: AppTextStyles.body),
       ],
     );
 
@@ -76,7 +76,7 @@ class _Portrait extends StatelessWidget {
           decoration: BoxDecoration(
             border: Border.all(color: AppColors.border),
             image: const DecorationImage(
-              image: AssetImage(ImagesDirectory.avatar),
+              image: AssetImage(ImagesDirectory.avatar2),
               fit: BoxFit.cover,
             ),
           ),

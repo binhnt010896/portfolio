@@ -23,7 +23,7 @@ class ProjectCard extends StatelessWidget {
               border: Border(bottom: BorderSide(color: AppColors.border)),
             ),
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-            child: Text(
+            child: SelectableText(
               project.tags.join('  '),
               style: AppTextStyles.tag,
             ),
@@ -33,9 +33,9 @@ class ProjectCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(project.title, style: AppTextStyles.cardTitle),
+                SelectableText(project.title, style: AppTextStyles.cardTitle),
                 const SizedBox(height: 12),
-                Text(project.description, style: AppTextStyles.body),
+                SelectableText(project.description, style: AppTextStyles.body),
                 const SizedBox(height: 20),
                 Wrap(
                   spacing: 12,

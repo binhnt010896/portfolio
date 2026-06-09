@@ -13,7 +13,8 @@ class ContactsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isMobile = context.isMobile;
-    final blurb = Text(PortfolioData.contactsBlurb, style: AppTextStyles.body);
+    final blurb =
+        SelectableText(PortfolioData.contactsBlurb, style: AppTextStyles.body);
 
     return SectionContainer(
       child: Column(

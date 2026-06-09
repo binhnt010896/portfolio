@@ -20,7 +20,7 @@ class SkillCard extends StatelessWidget {
               border: Border(bottom: BorderSide(color: AppColors.border)),
             ),
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            child: Text(category.title, style: AppTextStyles.bold),
+            child: SelectableText(category.title, style: AppTextStyles.bold),
           ),
           Padding(
             padding: const EdgeInsets.all(12),
@@ -29,7 +29,7 @@ class SkillCard extends StatelessWidget {
               runSpacing: 4,
               children: [
                 for (final item in category.items)
-                  Text(item, style: AppTextStyles.skillItem),
+                  SelectableText(item, style: AppTextStyles.skillItem),
               ],
             ),
           ),

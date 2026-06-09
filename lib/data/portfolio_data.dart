@@ -154,6 +154,7 @@ class PortfolioData {
           'Delivery web application built against provided design specs and '
           'API endpoints.',
       tags: ['ReactJS', 'JS'],
+      imageAsset: ImagesDirectory.pizza4Ps,
     ),
   ];
 

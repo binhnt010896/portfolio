@@ -37,7 +37,7 @@ class Footer extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 32),
-              Text(
+              SelectableText(
                 '© Copyright 2026. Made by ${PortfolioData.fullName}',
                 style: AppTextStyles.copyright,
               ),
@@ -77,7 +77,7 @@ class _Branding extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 12),
-        Text(PortfolioData.role, style: AppTextStyles.bodyWhite),
+        SelectableText(PortfolioData.role, style: AppTextStyles.bodyWhite),
       ],
     );
   }
@@ -91,7 +91,7 @@ class _Media extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Media', style: AppTextStyles.bold),
+        SelectableText('Media', style: AppTextStyles.bold),
         const SizedBox(height: 12),
         Row(
           mainAxisSize: MainAxisSize.min,

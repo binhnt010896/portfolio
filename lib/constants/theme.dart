@@ -8,10 +8,10 @@ class AppColors {
   AppColors._();
 
   static const Color background = Color(0xFF282C33);
-  static const Color primary = Color(0xFFC778DD); // purple accent
+  static const Color primary = Color(0xFF2A9CF2); // blue accent
   static const Color white = Color(0xFFFFFFFF);
   static const Color gray = Color(0xFFABB2BF);
-  static const Color line = Color(0xFFC778DD);
+  static const Color line = Color(0xFF2A9CF2);
   static const Color border = Color(0xFFABB2BF);
   static const Color cardBackground = Color(0xFF2A2E36);
   static const Color scrim = Color(0x99282C33);

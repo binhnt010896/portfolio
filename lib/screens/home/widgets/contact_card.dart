@@ -19,7 +19,7 @@ class ContactCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Message me here', style: AppTextStyles.bold),
+            SelectableText('Message me here', style: AppTextStyles.bold),
             const SizedBox(height: 16),
             for (final social in PortfolioData.socials)
               _ContactRow(

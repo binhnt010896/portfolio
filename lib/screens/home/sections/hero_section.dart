@@ -53,13 +53,13 @@ class _HeroText extends StatelessWidget {
       crossAxisAlignment: align,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
+        SelectableText(
           PortfolioData.heroHeadline,
           style: AppTextStyles.heroTitleFor(context.isMobile),
           textAlign: textAlign,
         ),
         const SizedBox(height: 16),
-        Text(
+        SelectableText(
           PortfolioData.heroSubtitle,
           style: AppTextStyles.heroSubtitle,
           textAlign: textAlign,
@@ -119,7 +119,7 @@ class _HeroImage extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        StatusBadge(text: PortfolioData.currentlyWorkingOn),
+        const StatusBadge(text: PortfolioData.currentlyWorkingOn),
       ],
     );
   }
