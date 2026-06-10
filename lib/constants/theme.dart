@@ -16,6 +16,8 @@ class AppColors {
   static const Color cardBackground = Color(0xFF2A2E36);
   static const Color scrim = Color(0x99282C33);
   static const Color transparent = Colors.transparent;
+  static const Color success = Color(0xFF3FB950); // form sent
+  static const Color error = Color(0xFFE5534B); // form failed
 }
 
 /// Centralised typography. The whole site uses the `Fira Code` monospace family.
@@ -221,6 +223,39 @@ class AppTextStyles {
     fontSize: 24,
     height: 1.31,
     color: AppColors.white,
+  );
+
+  // --- Contact form ---------------------------------------------------------
+  static const TextStyle inputText = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    height: 1.5,
+    color: AppColors.white,
+  );
+
+  static const TextStyle inputHint = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    height: 1.5,
+    color: AppColors.gray,
+  );
+
+  static const TextStyle formFeedbackSuccess = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+    height: 1.4,
+    color: AppColors.success,
+  );
+
+  static const TextStyle formFeedbackError = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+    height: 1.4,
+    color: AppColors.error,
   );
 
   // --- Responsive helpers ---------------------------------------------------

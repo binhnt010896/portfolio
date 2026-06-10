@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/constants/theme.dart';
+import 'package:portfolio/providers/contact_form_provider.dart';
 import 'package:portfolio/providers/navigation_provider.dart';
 import 'package:portfolio/screens/home/home_screen.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +17,7 @@ class PortfolioApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => NavigationProvider()),
+        ChangeNotifierProvider(create: (_) => ContactFormProvider()),
       ],
       child: MaterialApp(
         title: 'Binh — Portfolio',

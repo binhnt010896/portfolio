@@ -100,26 +100,23 @@ class MobileMenu extends StatelessWidget {
       duration: const Duration(milliseconds: 200),
       child: !nav.mobileMenuOpen
           ? const SizedBox.shrink()
-          : Positioned.fill(
-              top: AppHeader.height,
-              child: Container(
-                color: AppColors.background,
-                alignment: Alignment.topCenter,
-                padding: const EdgeInsets.only(top: 24),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    for (final section in AppHeader.navSections)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8),
-                        child: NavLink(
-                          section: section,
-                          active: nav.active == section,
-                          onTap: () => nav.scrollTo(section),
-                        ),
+          : Container(
+              color: AppColors.background,
+              alignment: Alignment.topCenter,
+              padding: const EdgeInsets.only(top: 24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  for (final section in AppHeader.navSections)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: NavLink(
+                        section: section,
+                        active: nav.active == section,
+                        onTap: () => nav.scrollTo(section),
                       ),
-                  ],
-                ),
+                    ),
+                ],
               ),
             ),
     );

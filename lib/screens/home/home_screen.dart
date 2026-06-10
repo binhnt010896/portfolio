@@ -72,7 +72,13 @@ class HomeScreen extends StatelessWidget {
               bottom: 0,
               child: SocialRail(),
             ),
-          const MobileMenu(),
+          const Positioned(
+            left: 0,
+            right: 0,
+            top: AppHeader.height,
+            bottom: 0,
+            child: MobileMenu(),
+          ),
         ],
       ),
     );

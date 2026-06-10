@@ -3,6 +3,7 @@ import 'package:portfolio/constants/theme.dart';
 import 'package:portfolio/data/portfolio_data.dart';
 import 'package:portfolio/helpers/responsive.dart';
 import 'package:portfolio/screens/home/widgets/contact_card.dart';
+import 'package:portfolio/screens/home/widgets/contact_form.dart';
 import 'package:portfolio/screens/home/widgets/section_container.dart';
 import 'package:portfolio/screens/home/widgets/section_heading.dart';
 
@@ -29,15 +30,27 @@ class ContactsSection extends StatelessWidget {
                 blurb,
                 const SizedBox(height: 24),
                 const ContactCard(),
+                const SizedBox(height: 24),
+                const ContactForm(),
               ],
             )
           else
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(flex: 3, child: blurb),
+                Expanded(
+                  flex: 3,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      blurb,
+                      const SizedBox(height: 24),
+                      const ContactCard(),
+                    ],
+                  ),
+                ),
                 const SizedBox(width: 40),
-                const Flexible(flex: 2, child: ContactCard()),
+                const Expanded(flex: 2, child: ContactForm()),
               ],
             ),
         ],
