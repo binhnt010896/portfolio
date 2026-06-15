@@ -72,7 +72,8 @@ class _Portrait extends StatelessWidget {
         const SizedBox(height: 12),
         Container(
           width: size,
-          height: size,
+          height: size * 1.2,
+          alignment: Alignment.topRight,
           decoration: BoxDecoration(
             border: Border.all(color: AppColors.border),
             image: const DecorationImage(

@@ -20,12 +20,10 @@ class SectionHeading extends StatelessWidget {
         children: [
           Text('#', style: AppTextStyles.sectionHashFor(isMobile)),
           const SizedBox(width: 4),
-          Flexible(
-            child: SelectableText(
-              title,
-              style: AppTextStyles.sectionTitleFor(isMobile),
-              maxLines: 1,
-            ),
+          SelectableText(
+            title,
+            style: AppTextStyles.sectionTitleFor(isMobile),
+            maxLines: 1,
           ),
           const SizedBox(width: 16),
           const Expanded(
@@ -34,7 +32,8 @@ class SectionHeading extends StatelessWidget {
           if (trailing != null) ...[
             const SizedBox(width: 16),
             trailing!,
-          ],
+          ] else
+            Spacer(),
         ],
       ),
     );

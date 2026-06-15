@@ -50,18 +50,17 @@ class PortfolioData {
   static const String role = 'Mobile & front-end developer';
   static const String location = 'Ho Chi Minh City, Vietnam';
 
-  static const String heroHeadline =
-      'Binh is a mobile & front-end developer';
+  static const String heroHeadline = 'Binh is a mobile & front-end developer';
   static const String heroSubtitle =
       'He crafts responsive mobile and web apps where clean architecture meets great user experience.';
-  static const String currentlyWorkingOn = 'Currently building healthcare apps @ Thomson X';
+  static const String currentlyWorkingOn =
+      'Currently building healthcare apps @ Thomson X';
 
   static const String quote =
-      'First, solve the problem. Then, write the code.';
-  static const String quoteAuthor = '- John Johnson';
+      'I am not a perfectionist, but I like to feel that things are done well. More important than that, I feel an endless need to learn, to improve, to evolve.';
+  static const String quoteAuthor = '- Cristiano Ronaldo';
 
-  static const String aboutMe =
-      "Hello, i'm Binh!\n\n"
+  static const String aboutMe = "Hello, i'm Binh!\n\n"
       "I'm a frontend developer with 7+ years of experience building mobile and "
       "web applications across healthcare, B2B, and e-commerce domains. I'm "
       'comfortable owning features end-to-end — from architecture decisions all '
@@ -107,8 +106,7 @@ class PortfolioData {
       imageAsset: ImagesDirectory.ralaliConnect,
       playStoreUrl:
           'https://play.google.com/store/apps/details?id=com.ralali.konekto',
-      appStoreUrl:
-          'https://apps.apple.com/id/app/ralali-connect/id1590298867',
+      appStoreUrl: 'https://apps.apple.com/id/app/ralali-connect/id1590298867',
     ),
     Project(
       title: 'Ralali Agent',
