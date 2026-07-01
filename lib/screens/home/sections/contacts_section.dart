@@ -4,6 +4,7 @@ import 'package:portfolio/data/portfolio_data.dart';
 import 'package:portfolio/helpers/responsive.dart';
 import 'package:portfolio/screens/home/widgets/contact_card.dart';
 import 'package:portfolio/screens/home/widgets/contact_form.dart';
+import 'package:portfolio/screens/home/widgets/reveal_on_scroll.dart';
 import 'package:portfolio/screens/home/widgets/section_container.dart';
 import 'package:portfolio/screens/home/widgets/section_heading.dart';
 
@@ -21,17 +22,23 @@ class ContactsSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SectionHeading(title: 'contacts'),
+          const RevealOnScroll(child: SectionHeading(title: 'contacts')),
           const SizedBox(height: 8),
           if (isMobile)
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                blurb,
+                RevealOnScroll(child: blurb),
                 const SizedBox(height: 24),
-                const ContactCard(),
+                const RevealOnScroll(
+                  delay: Duration(milliseconds: 90),
+                  child: ContactCard(),
+                ),
                 const SizedBox(height: 24),
-                const ContactForm(),
+                const RevealOnScroll(
+                  delay: Duration(milliseconds: 180),
+                  child: ContactForm(),
+                ),
               ],
             )
           else
@@ -40,17 +47,27 @@ class ContactsSection extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 3,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      blurb,
-                      const SizedBox(height: 24),
-                      const ContactCard(),
-                    ],
+                  child: RevealOnScroll(
+                    from: RevealFrom.left,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        blurb,
+                        const SizedBox(height: 24),
+                        const ContactCard(),
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(width: 40),
-                const Expanded(flex: 2, child: ContactForm()),
+                const Expanded(
+                  flex: 2,
+                  child: RevealOnScroll(
+                    from: RevealFrom.right,
+                    delay: Duration(milliseconds: 120),
+                    child: ContactForm(),
+                  ),
+                ),
               ],
             ),
         ],

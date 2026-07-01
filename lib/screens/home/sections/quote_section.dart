@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/constants/theme.dart';
 import 'package:portfolio/data/portfolio_data.dart';
 import 'package:portfolio/helpers/responsive.dart';
+import 'package:portfolio/screens/home/widgets/reveal_on_scroll.dart';
 import 'package:portfolio/screens/home/widgets/section_container.dart';
+import 'package:portfolio/screens/home/widgets/tilt_3d.dart';
 
 /// A decorative pull-quote in a bordered box with an attribution chip.
 class QuoteSection extends StatelessWidget {
@@ -15,34 +17,39 @@ class QuoteSection extends StatelessWidget {
     return SectionContainer(
       topPadding: 48,
       bottomPadding: 48,
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Container(
-            width: double.infinity,
-            decoration:
-                BoxDecoration(border: Border.all(color: AppColors.border)),
-            padding: EdgeInsets.symmetric(
-              horizontal: isMobile ? 20 : 40,
-              vertical: isMobile ? 28 : 40,
-            ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('"', style: markStyle),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: SelectableText(
-                    PortfolioData.quote,
-                    style: AppTextStyles.quoteFor(isMobile),
-                    textAlign: TextAlign.center,
-                  ),
+      child: RevealOnScroll(
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Tilt3D(
+              maxTilt: 0.05,
+              hoverScale: 1.0,
+              child: Container(
+                width: double.infinity,
+                decoration:
+                    BoxDecoration(border: Border.all(color: AppColors.border)),
+                padding: EdgeInsets.symmetric(
+                  horizontal: isMobile ? 20 : 40,
+                  vertical: isMobile ? 28 : 40,
                 ),
-                const SizedBox(width: 12),
-                Text('"', style: markStyle),
-              ],
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('"', style: markStyle),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: SelectableText(
+                        PortfolioData.quote,
+                        style: AppTextStyles.quoteFor(isMobile),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Text('"', style: markStyle),
+                  ],
+                ),
+              ),
             ),
-          ),
           Positioned(
             right: 24,
             bottom: -18,
@@ -64,8 +71,9 @@ class QuoteSection extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }

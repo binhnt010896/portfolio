@@ -3,9 +3,12 @@ import 'package:portfolio/constants/theme.dart';
 import 'package:portfolio/data/portfolio_data.dart';
 import 'package:portfolio/helpers/responsive.dart';
 import 'package:portfolio/screens/home/widgets/decorations.dart';
+import 'package:portfolio/screens/home/widgets/reveal_on_scroll.dart';
 import 'package:portfolio/screens/home/widgets/section_container.dart';
 import 'package:portfolio/screens/home/widgets/section_heading.dart';
 import 'package:portfolio/screens/home/widgets/skill_card.dart';
+import 'package:portfolio/screens/home/widgets/tilt_3d.dart';
+import 'package:portfolio/screens/home/widgets/wireframe_cube.dart';
 
 /// `# skills` — decorative shapes on the left, skill-category cards on the right.
 class SkillsSection extends StatelessWidget {
@@ -20,7 +23,7 @@ class SkillsSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SectionHeading(title: 'skills'),
+          const RevealOnScroll(child: SectionHeading(title: 'skills')),
           const SizedBox(height: 8),
           if (isDesktop)
             Row(
@@ -57,7 +60,9 @@ class _Decorations extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 24),
+        const SizedBox(height: 16),
+        const Center(child: WireframeCube(size: 150)),
+        const SizedBox(height: 16),
         Align(
           alignment: Alignment.centerRight,
           child: Container(
@@ -81,14 +86,22 @@ class _SkillGrid extends StatelessWidget {
       builder: (context, constraints) {
         final totalGap = SkillsSection._gap * (columns - 1);
         final itemWidth = (constraints.maxWidth - totalGap) / columns;
+        final skills = PortfolioData.skills;
         return Wrap(
           spacing: SkillsSection._gap,
           runSpacing: SkillsSection._gap,
           children: [
-            for (final category in PortfolioData.skills)
+            for (var i = 0; i < skills.length; i++)
               SizedBox(
                 width: itemWidth,
-                child: SkillCard(category: category),
+                child: RevealOnScroll(
+                  delay: Duration(milliseconds: 80 * (i % columns)),
+                  child: Tilt3D(
+                    maxTilt: 0.06,
+                    hoverScale: 1.015,
+                    child: SkillCard(category: skills[i]),
+                  ),
+                ),
               ),
           ],
         );

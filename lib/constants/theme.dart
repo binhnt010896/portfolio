@@ -18,6 +18,14 @@ class AppColors {
   static const Color transparent = Colors.transparent;
   static const Color success = Color(0xFF3FB950); // form sent
   static const Color error = Color(0xFFE5534B); // form failed
+
+  // --- 3D / immersive accents ------------------------------------------------
+  /// Dimmed blue for the far (back) edges of wireframe 3D geometry.
+  static const Color primaryDim = Color(0x552A9CF2);
+  /// Soft translucent blue used for glows behind 3D objects.
+  static const Color primaryGlow = Color(0x1F2A9CF2);
+  /// Muted edge colour for the back faces of the wireframe cube.
+  static const Color wireframeBack = Color(0xFF3A404A);
 }
 
 /// Centralised typography. The whole site uses the `Fira Code` monospace family.
