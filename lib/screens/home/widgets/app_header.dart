@@ -3,6 +3,7 @@ import 'package:portfolio/constants/theme.dart';
 import 'package:portfolio/helpers/responsive.dart';
 import 'package:portfolio/providers/navigation_provider.dart';
 import 'package:portfolio/screens/home/widgets/app_logo.dart';
+import 'package:portfolio/screens/home/widgets/custom_cursor.dart';
 import 'package:portfolio/screens/home/widgets/nav_link.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +18,7 @@ class AppHeader extends StatelessWidget {
     PortfolioSection.projects,
     PortfolioSection.skills,
     PortfolioSection.about,
+    PortfolioSection.testimonials,
     PortfolioSection.contacts,
   ];
 
@@ -43,10 +45,7 @@ class AppHeader extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () => nav.scrollTo(PortfolioSection.home),
-            child: const MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: AppLogo(),
-            ),
+            child: const CursorTarget(child: AppLogo()),
           ),
           if (showInlineNav)
             Row(

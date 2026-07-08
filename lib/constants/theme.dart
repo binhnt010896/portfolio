@@ -111,6 +111,66 @@ class AppTextStyles {
     color: AppColors.white,
   );
 
+  // --- Case-study detail page -------------------------------------------------
+  static const TextStyle detailTitle = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w600,
+    fontSize: 48,
+    height: 1.2,
+    color: AppColors.white,
+  );
+
+  static const TextStyle detailTitleMobile = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w600,
+    fontSize: 28,
+    height: 1.2,
+    color: AppColors.white,
+  );
+
+  /// Small uppercase-ish label above a meta value (role / timeline / team).
+  static const TextStyle metaLabel = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+    height: 1.4,
+    color: AppColors.primary,
+  );
+
+  static const TextStyle metaValue = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
+    height: 1.4,
+    color: AppColors.white,
+  );
+
+  /// Muted `// 01` index next to section titles and featured rows.
+  static const TextStyle sectionIndex = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w400,
+    fontSize: 32,
+    height: 1.31,
+    color: AppColors.gray,
+  );
+
+  static const TextStyle sectionIndexMobile = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w400,
+    fontSize: 24,
+    height: 1.31,
+    color: AppColors.gray,
+  );
+
+  /// Keycap text in the keyboard-shortcuts help overlay.
+  static const TextStyle kbdKey = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w500,
+    fontSize: 14,
+    height: 1.3,
+    color: AppColors.white,
+  );
+
   // --- Body -----------------------------------------------------------------
   static const TextStyle heroSubtitle = TextStyle(
     fontFamily: fontFamily,
@@ -277,6 +337,12 @@ class AppTextStyles {
       isMobile ? sectionHashMobile : sectionHash;
 
   static TextStyle quoteFor(bool isMobile) => isMobile ? quoteMobile : quote;
+
+  static TextStyle detailTitleFor(bool isMobile) =>
+      isMobile ? detailTitleMobile : detailTitle;
+
+  static TextStyle sectionIndexFor(bool isMobile) =>
+      isMobile ? sectionIndexMobile : sectionIndex;
 }
 
 /// The single application theme (dark, code-editor aesthetic).

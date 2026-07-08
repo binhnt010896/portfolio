@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// The anchored sections of the single-page portfolio.
-enum PortfolioSection { home, projects, skills, about, contacts }
+enum PortfolioSection { home, projects, skills, about, testimonials, contacts }
 
 extension PortfolioSectionLabel on PortfolioSection {
   String get label {
@@ -14,6 +14,8 @@ extension PortfolioSectionLabel on PortfolioSection {
         return 'skills';
       case PortfolioSection.about:
         return 'about-me';
+      case PortfolioSection.testimonials:
+        return 'testimonials';
       case PortfolioSection.contacts:
         return 'contacts';
     }

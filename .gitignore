@@ -29,3 +29,8 @@ doc/api/
 .idea
 
 portfolio.iml
+
+# macOS / local tooling
+.DS_Store
+.firebase/
+.claude/

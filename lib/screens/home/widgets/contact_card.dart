@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:portfolio/constants/theme.dart';
 import 'package:portfolio/data/portfolio_data.dart';
 import 'package:portfolio/helpers/url_helper.dart';
+import 'package:portfolio/screens/home/widgets/custom_cursor.dart';
 
 /// A bordered "Message me here" card listing each contact channel as an
 /// icon + handle row.
@@ -49,8 +50,7 @@ class _ContactRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
-      child: MouseRegion(
-        cursor: SystemMouseCursors.click,
+      child: CursorTarget(
         child: GestureDetector(
           onTap: () => openUrl(url),
           child: Row(

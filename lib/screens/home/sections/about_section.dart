@@ -30,7 +30,7 @@ class AboutSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const RevealOnScroll(child: SectionHeading(title: 'about-me')),
+          const RevealOnScroll(child: SectionHeading(title: 'about-me', index: 3)),
           const SizedBox(height: 8),
           if (isMobile)
             Column(

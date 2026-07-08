@@ -22,7 +22,7 @@ class ContactsSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const RevealOnScroll(child: SectionHeading(title: 'contacts')),
+          const RevealOnScroll(child: SectionHeading(title: 'contacts', index: 5)),
           const SizedBox(height: 8),
           if (isMobile)
             Column(

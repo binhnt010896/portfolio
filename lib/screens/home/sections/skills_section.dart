@@ -23,7 +23,7 @@ class SkillsSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const RevealOnScroll(child: SectionHeading(title: 'skills')),
+          const RevealOnScroll(child: SectionHeading(title: 'skills', index: 2)),
           const SizedBox(height: 8),
           if (isDesktop)
             Row(

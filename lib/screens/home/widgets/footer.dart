@@ -4,6 +4,7 @@ import 'package:portfolio/data/portfolio_data.dart';
 import 'package:portfolio/helpers/responsive.dart';
 import 'package:portfolio/helpers/url_helper.dart';
 import 'package:portfolio/screens/home/widgets/app_logo.dart';
+import 'package:portfolio/screens/home/widgets/custom_cursor.dart';
 import 'package:portfolio/screens/home/widgets/section_container.dart';
 import 'package:portfolio/screens/home/widgets/social_icon.dart';
 
@@ -62,8 +63,7 @@ class _Branding extends StatelessWidget {
             const AppLogo(),
             const SizedBox(width: 16),
             Flexible(
-              child: MouseRegion(
-                cursor: SystemMouseCursors.click,
+              child: CursorTarget(
                 child: GestureDetector(
                   onTap: () => openUrl('mailto:${PortfolioData.email}'),
                   child: Text(
