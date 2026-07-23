@@ -9,7 +9,6 @@ class ImagesDirectory {
 
   // Profile / branding
   static const String avatar = '$_base/avatar.png';
-  static const String avatar2 = '$_base/avatar_2.png';
   static const String logoNoText = '$_base/logo_no_text.png';
   static const String headerLogo = '$_base/header_logo.png';
   static const String headerLogoInverted = '$_base/header_logo_inverted.png';

@@ -30,7 +30,8 @@ class AboutSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const RevealOnScroll(child: SectionHeading(title: 'about-me', index: 3)),
+          const RevealOnScroll(
+              child: SectionHeading(title: 'about-me', index: 3)),
           const SizedBox(height: 8),
           if (isMobile)
             Column(
@@ -79,18 +80,7 @@ class _Portrait extends StatelessWidget {
           from: RevealFrom.right,
           child: Tilt3D(
             maxTilt: 0.08,
-            child: Container(
-              width: size,
-              height: size * 1.2,
-              alignment: Alignment.topRight,
-              decoration: BoxDecoration(
-                border: Border.all(color: AppColors.border),
-                image: const DecorationImage(
-                  image: AssetImage(ImagesDirectory.avatar2),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
+            child: Container(),
           ),
         ),
       ],
