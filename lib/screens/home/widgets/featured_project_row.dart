@@ -6,6 +6,7 @@ import 'package:portfolio/helpers/responsive.dart';
 import 'package:portfolio/screens/home/widgets/code_button.dart';
 import 'package:portfolio/screens/home/widgets/custom_cursor.dart';
 import 'package:portfolio/screens/home/widgets/tilt_3d.dart';
+import 'package:portfolio/services/analytics/analytics.dart';
 
 /// One immersive, Moritz-style featured project row: a large screenshot and a
 /// narrative teaser side by side (alternating left/right on desktop, stacked
@@ -23,16 +24,29 @@ class FeaturedProjectRow extends StatelessWidget {
     required this.index,
   });
 
-  void _open(BuildContext context) => context.push('/works/${project.slug}');
+  /// Navigates to the case study. [source] distinguishes a click on the big
+  /// screenshot from one on the "View case study" button — worth knowing when
+  /// deciding how much the imagery is pulling its weight.
+  void _open(BuildContext context, String source) {
+    Analytics.capture(AnalyticsEvents.caseStudyOpened, {
+      AnalyticsProps.slug: project.slug,
+      AnalyticsProps.title: project.title,
+      AnalyticsProps.source: source,
+    });
+    context.push('/works/${project.slug}');
+  }
 
   @override
   Widget build(BuildContext context) {
     final stacked = !context.isDesktop;
-    final image = _FeaturedImage(project: project, onTap: () => _open(context));
+    final image = _FeaturedImage(
+      project: project,
+      onTap: () => _open(context, AnalyticsPlacements.featuredImage),
+    );
     final info = _FeaturedInfo(
       project: project,
       index: index,
-      onOpen: () => _open(context),
+      onOpen: () => _open(context, AnalyticsPlacements.featuredButton),
     );
 
     if (stacked) {

@@ -7,6 +7,7 @@ import 'package:portfolio/screens/home/widgets/app_logo.dart';
 import 'package:portfolio/screens/home/widgets/custom_cursor.dart';
 import 'package:portfolio/screens/home/widgets/section_container.dart';
 import 'package:portfolio/screens/home/widgets/social_icon.dart';
+import 'package:portfolio/services/analytics/analytics.dart';
 
 /// Site footer: branding + contact on the left, social links on the right,
 /// and a copyright line.
@@ -65,7 +66,11 @@ class _Branding extends StatelessWidget {
             Flexible(
               child: CursorTarget(
                 child: GestureDetector(
-                  onTap: () => openUrl('mailto:${PortfolioData.email}'),
+                  onTap: () => openUrl(
+                    'mailto:${PortfolioData.email}',
+                    label: AnalyticsLinkLabels.email,
+                    placement: AnalyticsPlacements.footer,
+                  ),
                   child: Text(
                     PortfolioData.email,
                     style: AppTextStyles.body,
@@ -102,6 +107,8 @@ class _Media extends StatelessWidget {
                 child: SocialIcon(
                   iconAsset: social.iconAsset,
                   url: social.url,
+                  label: social.label,
+                  placement: AnalyticsPlacements.footer,
                   size: 28,
                 ),
               ),

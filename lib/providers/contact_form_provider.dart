@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/services/analytics/analytics.dart';
 import 'package:portfolio/services/web3forms_service.dart';
 
 /// The lifecycle of a single contact-form submission.
@@ -40,6 +41,10 @@ class ContactFormProvider extends ChangeNotifier {
       subject: subject.trim(),
       message: message.trim(),
     );
+
+    Analytics.capture(AnalyticsEvents.contactFormSubmitted, {
+      AnalyticsProps.success: result.success,
+    });
 
     _status =
         result.success ? ContactFormStatus.success : ContactFormStatus.error;

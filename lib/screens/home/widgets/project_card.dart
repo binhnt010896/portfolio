@@ -3,6 +3,7 @@ import 'package:portfolio/constants/theme.dart';
 import 'package:portfolio/data/portfolio_data.dart';
 import 'package:portfolio/helpers/url_helper.dart';
 import 'package:portfolio/screens/home/widgets/code_button.dart';
+import 'package:portfolio/services/analytics/analytics.dart';
 
 /// A bordered project card: screenshot, tech tags, title, description and links.
 class ProjectCard extends StatelessWidget {
@@ -50,24 +51,45 @@ class ProjectCard extends StatelessWidget {
     );
   }
 
+  /// Opens an external project link, tagging the event with which link it was
+  /// and which project it belongs to.
+  void _openProjectLink(String url, String label) {
+    openUrl(
+      url,
+      label: label,
+      placement: AnalyticsPlacements.projectCard,
+      properties: {
+        AnalyticsProps.slug: project.slug,
+        AnalyticsProps.title: project.title,
+      },
+    );
+  }
+
   List<Widget> _links() {
     final links = <Widget>[];
     if (project.liveUrl != null) {
       links.add(CodeButton(
         label: 'Live <~>',
-        onPressed: () => openUrl(project.liveUrl!),
+        onPressed: () =>
+            _openProjectLink(project.liveUrl!, AnalyticsLinkLabels.live),
       ));
     }
     if (project.appStoreUrl != null) {
       links.add(CodeButton(
         label: 'App Store <~>',
-        onPressed: () => openUrl(project.appStoreUrl!),
+        onPressed: () => _openProjectLink(
+          project.appStoreUrl!,
+          AnalyticsLinkLabels.appStore,
+        ),
       ));
     }
     if (project.playStoreUrl != null) {
       links.add(CodeButton(
         label: 'Play Store <~>',
-        onPressed: () => openUrl(project.playStoreUrl!),
+        onPressed: () => _openProjectLink(
+          project.playStoreUrl!,
+          AnalyticsLinkLabels.playStore,
+        ),
       ));
     }
     return links;

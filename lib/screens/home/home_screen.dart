@@ -12,6 +12,7 @@ import 'package:portfolio/screens/home/widgets/app_header.dart';
 import 'package:portfolio/screens/home/widgets/footer.dart';
 import 'package:portfolio/screens/home/widgets/shortcuts_help_dialog.dart';
 import 'package:portfolio/screens/home/widgets/social_rail.dart';
+import 'package:portfolio/services/analytics/analytics.dart';
 import 'package:provider/provider.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -48,12 +49,15 @@ class _HomeScreenState extends State<HomeScreen> {
     final nav = context.read<NavigationProvider>();
     switch (event.character) {
       case 'j':
+        _reportShortcut('j');
         _scrollBy(nav, _keyScrollStep);
         return KeyEventResult.handled;
       case 'k':
+        _reportShortcut('k');
         _scrollBy(nav, -_keyScrollStep);
         return KeyEventResult.handled;
       case '?':
+        _reportShortcut('?');
         ShortcutsHelpDialog.show(context);
         return KeyEventResult.handled;
       case '1':
@@ -62,11 +66,26 @@ class _HomeScreenState extends State<HomeScreen> {
       case '4':
       case '5':
       case '6':
+        _reportShortcut(event.character!);
         final index = int.parse(event.character!) - 1;
-        nav.scrollTo(PortfolioSection.values[index]);
+        nav.scrollTo(
+          PortfolioSection.values[index],
+          source: AnalyticsPlacements.keyboard,
+        );
         return KeyEventResult.handled;
     }
     return KeyEventResult.ignored;
+  }
+
+  /// Reports shortcut usage once per key per page load — enough to tell whether
+  /// anyone discovers them, without a j-spam scroll drowning out every other
+  /// event.
+  void _reportShortcut(String shortcut) {
+    Analytics.captureOnce(
+      '${AnalyticsEvents.keyboardShortcutUsed}:$shortcut',
+      AnalyticsEvents.keyboardShortcutUsed,
+      {AnalyticsProps.shortcut: shortcut},
+    );
   }
 
   void _scrollBy(NavigationProvider nav, double delta) {

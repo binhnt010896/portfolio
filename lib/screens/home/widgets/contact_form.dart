@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/constants/theme.dart';
 import 'package:portfolio/providers/contact_form_provider.dart';
 import 'package:portfolio/screens/home/widgets/code_button.dart';
+import 'package:portfolio/services/analytics/analytics.dart';
 import 'package:provider/provider.dart';
 
 /// A contact form matching the Figma design: Name + Email side-by-side, a
@@ -20,6 +21,22 @@ class _ContactFormState extends State<ContactForm> {
   final _emailController = TextEditingController();
   final _titleController = TextEditingController();
   final _messageController = TextEditingController();
+
+  /// Whether [AnalyticsEvents.contactFormStarted] has already been reported.
+  /// Never reset: clearing the fields after a successful send also fires
+  /// `Form.onChanged`, and a phantom "started" would be worse than missing the
+  /// (rare) second message in one visit.
+  bool _startReported = false;
+
+  /// Fires the "someone actually began typing" half of the contact funnel, then
+  /// clears any stale success/error feedback.
+  void _onFormChanged() {
+    if (!_startReported) {
+      _startReported = true;
+      Analytics.capture(AnalyticsEvents.contactFormStarted);
+    }
+    context.read<ContactFormProvider>().reset();
+  }
 
   @override
   void dispose() {
@@ -86,7 +103,7 @@ class _ContactFormState extends State<ContactForm> {
 
     return Form(
       key: _formKey,
-      onChanged: provider.reset,
+      onChanged: _onFormChanged,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,

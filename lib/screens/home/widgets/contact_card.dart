@@ -4,6 +4,7 @@ import 'package:portfolio/constants/theme.dart';
 import 'package:portfolio/data/portfolio_data.dart';
 import 'package:portfolio/helpers/url_helper.dart';
 import 'package:portfolio/screens/home/widgets/custom_cursor.dart';
+import 'package:portfolio/services/analytics/analytics.dart';
 
 /// A bordered "Message me here" card listing each contact channel as an
 /// icon + handle row.
@@ -27,6 +28,7 @@ class ContactCard extends StatelessWidget {
                 iconAsset: social.iconAsset,
                 handle: social.handle,
                 url: social.url,
+                label: social.label,
               ),
           ],
         ),
@@ -39,11 +41,13 @@ class _ContactRow extends StatelessWidget {
   final String iconAsset;
   final String handle;
   final String url;
+  final String label;
 
   const _ContactRow({
     required this.iconAsset,
     required this.handle,
     required this.url,
+    required this.label,
   });
 
   @override
@@ -52,7 +56,11 @@ class _ContactRow extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: CursorTarget(
         child: GestureDetector(
-          onTap: () => openUrl(url),
+          onTap: () => openUrl(
+            url,
+            label: label,
+            placement: AnalyticsPlacements.contactCard,
+          ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [

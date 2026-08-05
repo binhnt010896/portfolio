@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/services/analytics/analytics.dart';
 
 /// The anchored sections of the single-page portfolio.
 enum PortfolioSection { home, projects, skills, about, testimonials, contacts }
@@ -39,18 +40,40 @@ class NavigationProvider extends ChangeNotifier {
 
   void toggleMobileMenu([bool? open]) {
     _mobileMenuOpen = open ?? !_mobileMenuOpen;
+    if (_mobileMenuOpen) {
+      Analytics.capture(AnalyticsEvents.mobileMenuOpened);
+    }
     notifyListeners();
   }
 
   void setActive(PortfolioSection section) {
+    // Reported before the early return: on first paint the home section is
+    // already `_active`, and it still counts as viewed.
+    _reportViewed(section);
     if (_active == section) return;
     _active = section;
     notifyListeners();
   }
 
+  /// Records the first time [section] comes into view this page load.
+  void _reportViewed(PortfolioSection section) {
+    Analytics.captureOnce(
+      '${AnalyticsEvents.sectionViewed}:${section.name}',
+      AnalyticsEvents.sectionViewed,
+      {AnalyticsProps.section: section.label},
+    );
+  }
+
   GlobalKey keyFor(PortfolioSection section) => sectionKeys[section]!;
 
-  Future<void> scrollTo(PortfolioSection section) async {
+  /// Scrolls [section] into view. [source] records which control triggered it
+  /// (see [AnalyticsPlacements]) so header, burger menu, hero CTA, logo and
+  /// keyboard navigation can be told apart in PostHog.
+  Future<void> scrollTo(PortfolioSection section, {String? source}) async {
+    Analytics.capture(AnalyticsEvents.navClicked, {
+      AnalyticsProps.section: section.label,
+      if (source != null) AnalyticsProps.source: source,
+    });
     _mobileMenuOpen = false;
     notifyListeners();
     final ctx = sectionKeys[section]!.currentContext;

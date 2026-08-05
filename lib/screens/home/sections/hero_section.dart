@@ -12,6 +12,7 @@ import 'package:portfolio/screens/home/widgets/section_container.dart';
 import 'package:portfolio/screens/home/widgets/status_badge.dart';
 import 'package:portfolio/screens/home/widgets/tilt_3d.dart';
 import 'package:portfolio/screens/home/widgets/wireframe_cube.dart';
+import 'package:portfolio/services/analytics/analytics.dart';
 import 'package:provider/provider.dart';
 
 /// The landing hero: a parallax 3D scene (floating wireframe cube + glow behind
@@ -82,9 +83,10 @@ class _HeroText extends StatelessWidget {
           delay: const Duration(milliseconds: 220),
           child: CodeButton(
             label: 'Contact me!!',
-            onPressed: () => context
-                .read<NavigationProvider>()
-                .scrollTo(PortfolioSection.contacts),
+            onPressed: () => context.read<NavigationProvider>().scrollTo(
+                  PortfolioSection.contacts,
+                  source: AnalyticsPlacements.heroCta,
+                ),
           ),
         ),
       ],

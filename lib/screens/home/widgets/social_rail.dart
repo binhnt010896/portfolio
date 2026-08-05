@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/constants/theme.dart';
 import 'package:portfolio/data/portfolio_data.dart';
 import 'package:portfolio/screens/home/widgets/social_icon.dart';
+import 'package:portfolio/services/analytics/analytics.dart';
 
 /// The fixed vertical social rail pinned to the left edge on desktop:
 /// a vertical line rising from a column of social icons.
@@ -21,6 +22,8 @@ class SocialRail extends StatelessWidget {
             child: SocialIcon(
               iconAsset: social.iconAsset,
               url: social.url,
+              label: social.label,
+              placement: AnalyticsPlacements.socialRail,
               size: 24,
             ),
           ),

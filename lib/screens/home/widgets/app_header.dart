@@ -5,6 +5,7 @@ import 'package:portfolio/providers/navigation_provider.dart';
 import 'package:portfolio/screens/home/widgets/app_logo.dart';
 import 'package:portfolio/screens/home/widgets/custom_cursor.dart';
 import 'package:portfolio/screens/home/widgets/nav_link.dart';
+import 'package:portfolio/services/analytics/analytics.dart';
 import 'package:provider/provider.dart';
 
 /// Sticky top navigation bar. Shows inline links on desktop and a burger
@@ -44,7 +45,10 @@ class AppHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
-            onTap: () => nav.scrollTo(PortfolioSection.home),
+            onTap: () => nav.scrollTo(
+              PortfolioSection.home,
+              source: AnalyticsPlacements.logo,
+            ),
             child: const CursorTarget(child: AppLogo()),
           ),
           if (showInlineNav)
@@ -54,7 +58,10 @@ class AppHeader extends StatelessWidget {
                   NavLink(
                     section: section,
                     active: nav.active == section,
-                    onTap: () => nav.scrollTo(section),
+                    onTap: () => nav.scrollTo(
+                      section,
+                      source: AnalyticsPlacements.header,
+                    ),
                   ),
               ],
             )
@@ -112,7 +119,10 @@ class MobileMenu extends StatelessWidget {
                       child: NavLink(
                         section: section,
                         active: nav.active == section,
-                        onTap: () => nav.scrollTo(section),
+                        onTap: () => nav.scrollTo(
+                          section,
+                          source: AnalyticsPlacements.mobileMenu,
+                        ),
                       ),
                     ),
                 ],

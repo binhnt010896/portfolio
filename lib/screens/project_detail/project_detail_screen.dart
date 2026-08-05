@@ -11,6 +11,7 @@ import 'package:portfolio/screens/home/widgets/footer.dart';
 import 'package:portfolio/screens/home/widgets/reveal_on_scroll.dart';
 import 'package:portfolio/screens/home/widgets/section_container.dart';
 import 'package:portfolio/screens/home/widgets/section_heading.dart';
+import 'package:portfolio/services/analytics/analytics.dart';
 
 /// Dedicated case-study page for a featured project (`/works/<slug>`):
 /// full-bleed hero, role/timeline/team meta bar, then the narrative —
@@ -131,19 +132,29 @@ class ProjectDetailScreen extends StatelessWidget {
                               if (project.liveUrl != null)
                                 CodeButton(
                                   label: 'Live <~>',
-                                  onPressed: () => openUrl(project.liveUrl!),
+                                  onPressed: () => _openProjectLink(
+                                    project,
+                                    project.liveUrl!,
+                                    AnalyticsLinkLabels.live,
+                                  ),
                                 ),
                               if (project.appStoreUrl != null)
                                 CodeButton(
                                   label: 'App Store <~>',
-                                  onPressed: () =>
-                                      openUrl(project.appStoreUrl!),
+                                  onPressed: () => _openProjectLink(
+                                    project,
+                                    project.appStoreUrl!,
+                                    AnalyticsLinkLabels.appStore,
+                                  ),
                                 ),
                               if (project.playStoreUrl != null)
                                 CodeButton(
                                   label: 'Play Store <~>',
-                                  onPressed: () =>
-                                      openUrl(project.playStoreUrl!),
+                                  onPressed: () => _openProjectLink(
+                                    project,
+                                    project.playStoreUrl!,
+                                    AnalyticsLinkLabels.playStore,
+                                  ),
                                 ),
                               CodeButton(
                                 label: '<~ Back to works',
@@ -164,6 +175,20 @@ class ProjectDetailScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Opens one of the case study's external links, tagged with the project so a
+/// "read the study → tried the app" conversion is visible in PostHog.
+void _openProjectLink(Project project, String url, String label) {
+  openUrl(
+    url,
+    label: label,
+    placement: AnalyticsPlacements.caseStudy,
+    properties: {
+      AnalyticsProps.slug: project.slug,
+      AnalyticsProps.title: project.title,
+    },
+  );
 }
 
 void _backHome(BuildContext context) {
