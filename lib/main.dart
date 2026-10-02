@@ -8,6 +8,7 @@ import 'package:portfolio/providers/cursor_provider.dart';
 import 'package:portfolio/providers/navigation_provider.dart';
 import 'package:portfolio/screens/home/home_screen.dart';
 import 'package:portfolio/screens/home/widgets/custom_cursor.dart';
+import 'package:portfolio/screens/legal/long_ky_privacy_screen.dart';
 import 'package:portfolio/screens/project_detail/project_detail_screen.dart';
 import 'package:portfolio/services/analytics/analytics.dart';
 import 'package:provider/provider.dart';
@@ -19,7 +20,9 @@ void main() {
 }
 
 /// `/` is the single-page home; each featured project also gets a dedicated,
-/// shareable case-study page at `/works/<slug>`.
+/// shareable case-study page at `/works/<slug>`. `/long-ky/privacy` is a
+/// standalone legal page (the Long Ký app's Play Store privacy policy URL) —
+/// not part of the portfolio's own narrative, so it's unlinked from the nav.
 final GoRouter _router = GoRouter(
   observers: [_AnalyticsRouteObserver()],
   routes: [
@@ -30,6 +33,14 @@ final GoRouter _router = GoRouter(
         // Read back by [_AnalyticsRouteObserver] as the pageview path.
         name: '/',
         child: const HomeScreen(),
+      ),
+    ),
+    GoRoute(
+      path: '/long-ky/privacy',
+      pageBuilder: (context, state) => MaterialPage(
+        key: state.pageKey,
+        name: '/long-ky/privacy',
+        child: const LongKyPrivacyScreen(),
       ),
     ),
     GoRoute(
