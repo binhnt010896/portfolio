@@ -398,6 +398,8 @@ class PortfolioData {
           'am confident that he will continue to add value to any '
           'organization. I highly recommend him and wish him every success in '
           'his future endeavors.”',
+      avatarAsset: ImagesDirectory.tonyGao,
+      linkedinUrl: 'https://www.linkedin.com/in/tony-gao-6a802513b',
     ),
   ];
 

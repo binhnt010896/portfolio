@@ -45,6 +45,7 @@ class ImagesDirectory {
   // Testimonial avatars
   static const String trongDinh = '$_base/trong_dinh.jpeg';
   static const String nikita = '$_base/nikita.jpeg';
+  static const String tonyGao = '$_base/tony_gao.png';
 
   // Social / UI icons (svg)
   static const String _icons = 'assets/icons';
