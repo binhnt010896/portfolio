@@ -17,7 +17,7 @@ class TestimonialsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sideBySide = context.isDesktop;
+    final columns = context.isMobile ? 1 : 2;
     final testimonials = PortfolioData.testimonials;
     return SectionContainer(
       child: Column(
@@ -27,45 +27,63 @@ class TestimonialsSection extends StatelessWidget {
             child: SectionHeading(title: 'testimonials', index: 4),
           ),
           const SizedBox(height: 8),
-          if (sideBySide)
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                for (var i = 0; i < testimonials.length; i++) ...[
-                  if (i > 0) const SizedBox(width: _gap),
-                  Expanded(
-                    child: RevealOnScroll(
-                      delay: Duration(milliseconds: 90 * i),
-                      child: _TestimonialCard(testimonial: testimonials[i]),
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final cardWidth =
+                  (constraints.maxWidth - _gap * (columns - 1)) / columns;
+              return Wrap(
+                spacing: _gap,
+                runSpacing: _gap,
+                children: [
+                  for (var i = 0; i < testimonials.length; i++)
+                    SizedBox(
+                      width: cardWidth,
+                      child: RevealOnScroll(
+                        delay: Duration(milliseconds: 90 * (i % columns)),
+                        child: _TestimonialCard(testimonial: testimonials[i]),
+                      ),
                     ),
-                  ),
                 ],
-              ],
-            )
-          else
-            Column(
-              children: [
-                for (var i = 0; i < testimonials.length; i++) ...[
-                  if (i > 0) const SizedBox(height: _gap),
-                  RevealOnScroll(
-                    child: _TestimonialCard(testimonial: testimonials[i]),
-                  ),
-                ],
-              ],
-            ),
+              );
+            },
+          ),
         ],
       ),
     );
   }
 }
 
-class _TestimonialCard extends StatelessWidget {
+class _TestimonialCard extends StatefulWidget {
   final Testimonial testimonial;
 
   const _TestimonialCard({required this.testimonial});
 
   @override
+  State<_TestimonialCard> createState() => _TestimonialCardState();
+}
+
+class _TestimonialCardState extends State<_TestimonialCard> {
+  static const int _collapsedLines = 5;
+  static const double _padding = 24;
+
+  bool _expanded = false;
+
+  /// Whether [text] needs more than [_collapsedLines] lines at [width].
+  bool _overflows(String text, double width) {
+    final painter = TextPainter(
+      text: TextSpan(text: text, style: AppTextStyles.body),
+      maxLines: _collapsedLines,
+      textDirection: TextDirection.ltr,
+      textScaler: MediaQuery.textScalerOf(context),
+    )..layout(maxWidth: width);
+    final overflowing = painter.didExceedMaxLines;
+    painter.dispose();
+    return overflowing;
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final testimonial = widget.testimonial;
     final avatar = testimonial.avatarAsset;
     final linkedinUrl = testimonial.linkedinUrl;
     return DecoratedBox(
@@ -74,7 +92,7 @@ class _TestimonialCard extends StatelessWidget {
         color: AppColors.cardBackground,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(_padding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -122,7 +140,30 @@ class _TestimonialCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 20),
-            SelectableText(testimonial.quote, style: AppTextStyles.body),
+            LayoutBuilder(
+              builder: (context, constraints) {
+                final canExpand =
+                    _overflows(testimonial.quote, constraints.maxWidth);
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SelectableText(
+                      testimonial.quote,
+                      style: AppTextStyles.body,
+                      maxLines: _expanded ? null : _collapsedLines,
+                    ),
+                    if (canExpand) ...[
+                      const SizedBox(height: 12),
+                      CodeTextLink(
+                        label: _expanded ? 'Show less' : 'Show more',
+                        onPressed: () =>
+                            setState(() => _expanded = !_expanded),
+                      ),
+                    ],
+                  ],
+                );
+              },
+            ),
             if (linkedinUrl != null) ...[
               const SizedBox(height: 20),
               CodeTextLink(
