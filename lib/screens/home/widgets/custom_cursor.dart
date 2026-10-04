@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/constants/theme.dart';
+import 'package:portfolio/helpers/responsive.dart';
 import 'package:portfolio/providers/cursor_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -7,8 +8,7 @@ import 'package:provider/provider.dart';
 /// cursor with a custom ring + dot that morphs over interactive elements.
 ///
 /// The overlay renders above the Navigator, so it also covers dialogs. It
-/// ignores pointers and only appears after a mouse hover event, keeping touch
-/// devices unaffected.
+/// ignores pointers and is disabled entirely on mobile and tablet widths.
 class CursorArena extends StatelessWidget {
   final Widget child;
 
@@ -16,6 +16,8 @@ class CursorArena extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Touch-first layouts (mobile / tablet) get no custom cursor at all.
+    if (context.isMobile || context.isTablet) return child;
     final cursor = context.read<CursorProvider>();
     return MouseRegion(
       opaque: false,
@@ -137,6 +139,7 @@ class _CursorTargetState extends State<CursorTarget> {
 
   @override
   Widget build(BuildContext context) {
+    if (context.isMobile || context.isTablet) return widget.child;
     final cursor = context.read<CursorProvider>();
     return MouseRegion(
       cursor: SystemMouseCursors.none,

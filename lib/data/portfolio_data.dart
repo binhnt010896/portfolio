@@ -58,14 +58,14 @@ class Testimonial {
   final String name;
   final String title;
   final String quote;
-  final String avatarAsset;
-  final String linkedinUrl;
+  final String? avatarAsset;
+  final String? linkedinUrl;
   const Testimonial({
     required this.name,
     required this.title,
     required this.quote,
-    required this.avatarAsset,
-    required this.linkedinUrl,
+    this.avatarAsset,
+    this.linkedinUrl,
   });
 }
 
@@ -374,6 +374,30 @@ class PortfolioData {
           'enough to have him.”',
       avatarAsset: ImagesDirectory.nikita,
       linkedinUrl: 'https://www.linkedin.com/in/nikita-devy-haryono/',
+    ),
+    Testimonial(
+      name: 'Tony Gao Yu',
+      title: 'Director Deputy at ThomsonX',
+      quote:
+          '“I had the pleasure of working with Binh for the past three years '
+          'at Thomson X, where he served as a Frontend and Mobile Developer.\n\n'
+          'Throughout his time with the team, Binh consistently demonstrated '
+          'strong technical capabilities in frontend and mobile application '
+          'development. He made valuable contributions to the successful '
+          'delivery of multiple projects, producing high-quality, reliable, '
+          'and user-friendly solutions while maintaining attention to '
+          'detail.\n\n'
+          'Beyond his technical skills, Binh is a dedicated and dependable '
+          'professional. He approaches his work with a positive attitude, '
+          'takes ownership of his responsibilities, collaborates effectively '
+          'with teammates, and is always willing to support others when '
+          'needed. His professionalism, commitment to continuous improvement, '
+          'and ability to work well under pressure made him a trusted member '
+          'of the team.\n\n'
+          'I appreciate Binh\'s contributions over the past three years and '
+          'am confident that he will continue to add value to any '
+          'organization. I highly recommend him and wish him every success in '
+          'his future endeavors.”',
     ),
   ];
 

@@ -66,6 +66,8 @@ class _TestimonialCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final avatar = testimonial.avatarAsset;
+    final linkedinUrl = testimonial.linkedinUrl;
     return DecoratedBox(
       decoration: BoxDecoration(
         border: Border.all(color: AppColors.border),
@@ -83,12 +85,22 @@ class _TestimonialCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     border: Border.all(color: AppColors.border),
                   ),
-                  child: Image.asset(
-                    testimonial.avatarAsset,
-                    width: 64,
-                    height: 64,
-                    fit: BoxFit.cover,
-                  ),
+                  child: avatar != null
+                      ? Image.asset(
+                          avatar,
+                          width: 64,
+                          height: 64,
+                          fit: BoxFit.cover,
+                        )
+                      : const SizedBox(
+                          width: 64,
+                          height: 64,
+                          child: Icon(
+                            Icons.person_outline,
+                            color: AppColors.primary,
+                            size: 32,
+                          ),
+                        ),
                 ),
                 const SizedBox(width: 16),
                 Expanded(
@@ -111,11 +123,13 @@ class _TestimonialCard extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             SelectableText(testimonial.quote, style: AppTextStyles.body),
-            const SizedBox(height: 20),
-            CodeTextLink(
-              label: 'LinkedIn ~~>',
-              onPressed: () => openUrl(testimonial.linkedinUrl),
-            ),
+            if (linkedinUrl != null) ...[
+              const SizedBox(height: 20),
+              CodeTextLink(
+                label: 'LinkedIn ~~>',
+                onPressed: () => openUrl(linkedinUrl),
+              ),
+            ],
           ],
         ),
       ),
